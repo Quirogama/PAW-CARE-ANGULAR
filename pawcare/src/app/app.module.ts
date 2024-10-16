@@ -24,6 +24,7 @@ import { AdministradorDashboardComponent } from './model/administrador/administr
 import { ClienteFormComponent } from './model/cliente/cliente-form/cliente-form.component';
 import { ClienteEditComponent } from './model/cliente/cliente-edit/cliente-edit.component';
 import { VeterinarioTableComponent } from './model/veterinario/veterinario-table/veterinario-table.component';
+import { DashboardComponent } from './model/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { VeterinarioTableComponent } from './model/veterinario/veterinario-table
     ClienteFormComponent,
     ClienteEditComponent,
     VeterinarioTableComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
