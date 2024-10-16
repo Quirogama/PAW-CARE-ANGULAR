@@ -46,7 +46,7 @@ import { VeterinarioTableComponent } from './model/veterinario/veterinario-table
     AdministradorDashboardComponent,
     ClienteFormComponent,
     ClienteEditComponent,
-    VeterinarioTableComponent
+    VeterinarioTableComponent,
   ],
   imports: [
     BrowserModule,

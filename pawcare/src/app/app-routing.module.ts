@@ -29,6 +29,7 @@ const routes: Routes = [
   { path: 'cliente/form', component: ClienteFormComponent},
   { path: 'cliente/detail/:id', component: ClienteDetailComponent},
   { path: 'cliente/edit/:id', component: ClienteEditComponent},
+  { path: 'cliente/registro', component: ClienteFormComponent},
   //veterinarios
   { path: 'veterinarios', component: VeterinarioTableComponent},
   //administrador

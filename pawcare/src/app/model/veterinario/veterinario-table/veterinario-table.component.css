@@ -1,5 +1,100 @@
-h1{
-    font-size: 100px;
-    text-align: center;
-    padding: 200px;
+.verde{
+    color:#006157;
 }
+
+.amarillo{
+    color:#c87800;
+}
+
+.rojo{
+    color: #860400;
+}
+
+.tabla{
+    padding: 10px;
+    padding-bottom: 0px;
+    width:98%;
+    border-collapse: collapse;
+    margin: 20px;
+    margin-bottom: 0px;
+    font-size: 18px;
+    text-align: left;
+    border: 1px solid #ddd; 
+    border-radius: 20px;
+    margin: 0 auto;
+}
+
+.tabla th,
+.tabla td {
+  padding: 12px;
+}
+
+.tabla th {
+  background-color: #006157; /* Color de fondo verde para encabezados */
+  color: white;
+}
+
+.tabla tr{
+    transition: transform 0.3s, box-shadow 0.3s; 
+}
+
+.tabla tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.tabla tr:hover {
+  background-color: #ddd;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(-5px);
+}
+
+.botones button{
+    margin-right: 5px;
+}
+
+.botonSeleccion{
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #006157;
+    border: 0px solid #000;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer; 
+}
+
+.botonEliminar{
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #860400;
+    border: 0px solid #000;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    
+}
+
+.botonDetalle{
+  padding: 10px 20px;
+    font-size: 16px;
+    background-color: #008073;
+    border: 0px solid #000;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer; 
+}
+
+.botonEditar{
+  padding: 10px 20px;
+    font-size: 16px;
+    background-color: #006680;
+    border: 0px solid #000;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer; 
+}
+
+h1{
+    text-align: center;
+    padding-top: 20px;
+}
+

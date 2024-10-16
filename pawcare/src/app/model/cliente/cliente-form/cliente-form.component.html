@@ -1,1 +1,37 @@
-<p>cliente-form works!</p>
+<form (ngSubmit)="addCliente()" #mascotaForm="ngForm">
+    <h1>Agregar cliente</h1>
+    <br>
+  
+    <!-- Campo oculto para el ID -->
+    <input type="number" name="id" id="id" [(ngModel)]="formCliente.id" hidden>
+  
+    <!-- Nombre -->
+    <label for="nombre">Nombre*</label><br>
+    <input type="text" name="nombre" id="nombre" [(ngModel)]="formCliente.nombre" required>
+    <br>
+    
+    <!-- cedula -->
+    <label for="cedula">Cedula*</label><br>
+    <input type="number" name="cedula" id="cedula" min="1" max="99" [(ngModel)]="formCliente.cedula" required>
+    <br>
+
+    <!-- celular -->
+    <label for="celular">Celular*</label><br>
+    <input type="number" name="celular" id="celular" min="1" max="99" [(ngModel)]="formCliente.celular" required>
+    <br>
+
+    <label for="correo">Email:</label>
+                        <input
+                            id="correo"
+                            type="text"
+                            [(ngModel)]="formCliente.correo"
+                            name="correo"
+                            required
+                        />
+  
+    
+    <!-- Botón para agregar mascota -->
+    <button type="submit" class="botonAgregar">Agregar</button>
+    <br>
+  </form>
+  

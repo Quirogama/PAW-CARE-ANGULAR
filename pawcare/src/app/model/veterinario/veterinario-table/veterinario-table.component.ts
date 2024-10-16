@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { veterinario } from '../veterinario';
+import { VeterinarioService } from 'src/app/service/veterinario.service';
 
 @Component({
   selector: 'app-veterinario-table',
@@ -7,4 +9,43 @@ import { Component } from '@angular/core';
 })
 export class VeterinarioTableComponent {
 
+  selectedVeterinario!: veterinario;
+
+  veterinarioList: veterinario[] = [
+    {
+      id: 1,
+      cedula: 1234567890,
+      nombre: 'Juan Perez',
+      especialidad: 'Anestesiologo',
+      numeroAtenciones: 10,
+      imagen: 'assets/img/iconoVeterinario.jpg'
+    }
+  ];
+
+  constructor(private veterinarioService: VeterinarioService){ }
+
+  /*
+  ngOnInit(): void {
+    this.veterinarioService.findAll().subscribe(
+      (veterinarios) => {
+        this.veterinarioList = veterinarios;
+      }
+    )
+  }
+  */
+
+  mostrarVeterinario(veterinario: veterinario){
+    this.selectedVeterinario = veterinario
+  }
+
+  agregarVeterinario(veterinario: veterinario) {
+    this.veterinarioList.push(veterinario);
+    this.veterinarioService.addVeterinario(veterinario); 
+  }
+
+  eliminarveterinario(veterinario: veterinario) {
+    var index = this.veterinarioList.indexOf(veterinario);
+    this.veterinarioList.splice(index, 1);
+    this.veterinarioService.deleteVeterinario(veterinario.id); 
+  }
 }
