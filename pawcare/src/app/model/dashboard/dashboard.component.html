@@ -1,32 +1,86 @@
 <main class="content">
     <div class="info">
-    <h1>DASHBOARD DEL ADMINISTADOR</h1>
-    <p>Aquí puedes ver estadísticas importantes del sistema.</p>
+    <h1 style="text-align: center;">Dashboard de Administrador</h1>
+    <p style="text-align: center;">Este dashboard muestra las métricas clave del sistema.</p>
+    <hr>
     </div>
 
-    <div class="kpi-container">
-    <!-- Total de Mascotas -->
-    <div class="kpi-card">
-        <h3>Total de Mascotas</h3>
-        <p>{{ totalMascotas }}</p>
+    <!-- 1. Cantidad total de tratamiento administrados en el último mes -->
+    <h2 style="text-align: center;">Cantidad total de tratamientos administrados en el último mes</h2>
+    <div class="kpi-card centered">
+    <p>{{ totalTratamientosMes }}</p>
     </div>
+    <hr>
 
-    <!-- Total de Clientes -->
-    <div class="kpi-card">
-        <h3>Total de Clientes</h3>
-        <p>{{ totalClientes }}</p>
+    <!-- 2. Cantidad de tratamientos por tipo de medicamento administrado (tabla medicamento - cantidad) -->
+    <h2 style="text-align: center;">Cantidad de tratamientos por tipo de medicamento administrado en el último mes</h2>
+    <div class="centered">
+    <table class="small-table">
+        <thead>
+        <tr>
+            <th>Medicamento</th>
+            <th>Cantidad Administrada</th>
+        </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let tratamiento of tratamientosPorMedicamento">
+            <td>{{ tratamiento.medicamento }}</td>
+            <td>{{ tratamiento.cantidad }}</td>
+        </tr>
+        </tbody>
+    </table>
     </div>
-    
-    <!-- Próximas Citas -->
-    <div class="kpi-card">
-        <h3>Próximas Citas</h3>
-        <p>{{ proximasCitas }}</p>
-    </div>
+    <hr>
 
-    <!-- Veterinarios Activos -->
-    <div class="kpi-card">
-        <h3>Veterinarios Activos</h3>
-        <p>{{ totalVeterinarios }}</p>
+    <!-- 3. Cantidad de veterinarios activos en la plataforma -->
+    <h2 style="text-align: center;">Cantidad de veterinarios activos en la plataforma</h2>
+    <div class="kpi-card centered">
+    <p>{{ totalVeterinariosActivos }}</p>
     </div>
+    <hr>
+
+    <!-- 4. Cantidad de veterinarios inactivos en la plataforma -->
+    <h2 style="text-align: center;">Cantidad de veterinarios inactivos en la plataforma</h2>
+    <div class="kpi-card centered">
+    <p>{{ totalVeterinariosInactivos }}</p>
+    </div>
+    <hr>
+
+    <!-- 5. Cantidad de mascotas totales en la veterinaria -->
+    <h2 style="text-align: center;">Cantidad de mascotas totales en la veterinaria</h2>
+    <div class="kpi-card centered">
+    <p>{{ totalMascotas }}</p>
+    </div>
+    <hr>
+
+    <!-- 6. Cantidad de mascotas activas (en tratamiento) en la veterinaria -->
+    <h2 style="text-align: center;">Cantidad de mascotas activas (en tratamiento) en la veterinaria</h2>
+    <div class="kpi-card centered">
+    <p>{{ totalMascotasActivas }}</p>
+    </div>
+    <hr>
+
+    <!-- 7. Ventas totales de la veterinaria -->
+    <h2 style="text-align: center;">Ventas totales de la veterinaria</h2>
+    <div class="kpi-card centered">
+    <p>{{ ventasTotales }}</p>
+    </div>
+    <hr>
+
+    <!-- 8. Ganancias totales de la veterinaria -->
+    <h2 style="text-align: center;">Ganancias totales de la veterinaria</h2>
+    <div class="kpi-card centered">
+    <p>{{ gananciasTotales }}</p>
+    </div>
+    <hr>
+
+    <!-- 9. Top 3 tratamientos con más unidades vendidas -->
+    <h2 style="text-align: center;">Top 3 tratamientos con más unidades vendidas</h2>
+    <div class="centered">
+    <ol class ="centered-list">
+        <li *ngFor="let tratamiento of topTratamientos">
+        {{ tratamiento.nombre }} ({{ tratamiento.unidadesVendidas }} unidades)
+        </li>
+    </ol>
     </div>
 </main>
