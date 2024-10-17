@@ -18,29 +18,29 @@ export class VeterinarioPerfilComponent {
   @Input() 
   mascotas: mascota[] = [];
 
+  @Input()
   tratamientos: tratamiento[] = [];
+
 
   constructor(private veterinarioService: VeterinarioService,
               private route: ActivatedRoute,
               private router: Router
   ) { 
-    /*
     this.route.paramMap.subscribe(params => {
       const id = Number(params.get('id'));
       this.veterinarioService.findById(id).pipe(
         mergeMap(
           (veterinarioInfo) => {
             this.veterinario = veterinarioInfo;
-            return this.veterinarioService.findVeterinarioMascota(this.cliente.id);
+            return this.veterinarioService.findVeterinarioTratamientos(this.veterinario.id);
           }
         )
       ).subscribe(
-        (mascotas) => {
-          this.mascotas = mascotas;
+        (tratamientos) => {
+          this.tratamientos = tratamientos;
         }
       )
     })
-      */
   }
 
   ngOnInit(): void {

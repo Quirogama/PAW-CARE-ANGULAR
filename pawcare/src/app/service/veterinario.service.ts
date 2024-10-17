@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { veterinario } from '../model/veterinario/veterinario';
+import { tratamiento } from '../model/tratamiento/tratamiento';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,9 @@ export class VeterinarioService {
   constructor(
     private http: HttpClient
   ) { }
+  findVeterinarioTratamientos(id: number): Observable<tratamiento[]> {
+    return this.http.get<tratamiento[]>('http://localhost:8080/veterinario/tratamiento/'+id);
+  }
 
   findAll(): Observable<veterinario[]> {
     return this.http.get<veterinario[]>('http://localhost:8080/veterinario/all');

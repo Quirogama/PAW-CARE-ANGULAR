@@ -17,6 +17,7 @@ import { VeterinarioTableComponent } from './model/veterinario/veterinario-table
 import { VeterinarioEditComponent } from './model/veterinario/veterinario-edit/veterinario-edit.component';
 import { VeterinarioDetailComponent } from './model/veterinario/veterinario-detail/veterinario-detail.component';
 import { VeterinarioPerfilComponent } from './model/veterinario/veterinario-perfil/veterinario-perfil.component';
+import { ClienteRegistroComponent } from './model/cliente/cliente-registro/cliente-registro.component';
 
 
 const routes: Routes = [
@@ -33,6 +34,7 @@ const routes: Routes = [
   { path: 'cliente/detail/:id', component: ClienteDetailComponent},
   { path: 'cliente/edit/:id', component: ClienteEditComponent},
   { path: 'cliente/registro', component: ClienteFormComponent},
+  { path: 'cliente/crear-cuenta', component: ClienteRegistroComponent},
   //veterinarios
   { path: 'veterinarios', component: VeterinarioTableComponent},
   { path: 'veterinario/edit/:id', component: VeterinarioEditComponent},
