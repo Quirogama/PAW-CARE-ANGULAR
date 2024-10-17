@@ -1,0 +1,32 @@
+<form (ngSubmit)="addVeterinario()" #veterinarioForm="ngForm">
+    <h1>Agregar Nuevo Veterinario</h1>
+
+    <input type="number" name="id" id="id" [(ngModel)]="formVeterinario.id" hidden>
+
+    <label for="nombre">Nombre</label>
+    <input type="text" name="nombre" id="nombre" [(ngModel)]="formVeterinario.nombre" required>
+    <br>
+
+    <label for="cedula">Cedula</label>
+    <input type="number" name="cedula" id="cedula" [(ngModel)]="formVeterinario.cedula" required>
+    <br>
+
+    <label for="especialidad">Especialidad</label>
+    <input type="text" name="especialidad" id="especialidad" [(ngModel)]="formVeterinario.especialidad" required>
+    <br>
+
+    <label for="numAtenciones">Numero de Atenciones</label>
+    <input type="number" name="numAtenciones" id="numAtenciones" [(ngModel)]="formVeterinario.numAtenciones" required>
+    <br>
+
+    <label for="imagen">Imagen (URL)</label>
+    <input type="text" name="imagen" id="imagen" [(ngModel)]="formVeterinario.imagen" required>
+    <br>
+
+    <label for="clave">Clave</label>
+    <input type="text" name="clave" id="clave" [(ngModel)]="formVeterinario.clave" required>
+    <br>
+
+    <button type="submit" class="botonAgregar">agregar</button>
+
+</form>

@@ -15,10 +15,11 @@
           <a class="btnlogout" (click)="logout()">LOGOUT</a>
         </ng-container>
         <ng-container *ngSwitchCase="'administrador'">
-          <a routerLink="/administrador/dashboard">DASHBOARD</a>
+          <a routerLink="/administrador/dashboard">PERFIL PRINCIPAL</a>
           <a routerLink="/mascotas">LISTA DE MASCOTAS</a>
           <a routerLink="/clientes">LISTA DE CLIENTES</a>
           <a routerLink="/veterinarios">LISTA DE VETERINARIOS</a>
+          <a routerLink="/dashboard">DASHBOARD</a>
           <a class="btnlogout" (click)="logout()">LOGOUT</a>
         </ng-container>
         <ng-container *ngSwitchCase="'noauth'">
