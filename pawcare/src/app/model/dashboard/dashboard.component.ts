@@ -36,19 +36,22 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     // Llamar al servicio para obtener la cantidad total de tratamientos en el último mes
-    this.dashboardService.getCantidadTratamientosUltimoMes().subscribe({
-      next: (data) => {
+    this.dashboardService.getCantidadTratamientosUltimoMes().subscribe(
+      (data) => {
         this.totalTratamientosMes = data; // Asignamos los datos reales obtenidos desde el backend
-      },
-      error: (err) => {
-        console.error('Error al obtener la cantidad de tratamientos: ', err);
       }
-    });
+    );
 
+    
+    this.dashboardService.getCantidadTotalMascotas().subscribe(
+      (data) => {
+        this.totalMascotas = data; // Asignamos los datos reales obtenidos desde el backend
+      }
+    );
+  
     // Valores simulados para otros KPIs (puedes reemplazarlos con llamados reales en el futuro)
     this.totalVeterinariosActivos = 10;
     this.totalVeterinariosInactivos = 3;
-    this.totalMascotas = 200;
     this.totalMascotasActivas = 45;
     this.ventasTotales = 5000;
     this.gananciasTotales = 2000;
