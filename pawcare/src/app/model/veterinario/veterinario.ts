@@ -1,3 +1,5 @@
+import { tratamiento } from "../tratamiento/tratamiento";
+
 export interface veterinario {
     id: number;
     cedula: number;
@@ -6,4 +8,5 @@ export interface veterinario {
     especialidad: string;
     numAtenciones: number;
     imagen: string;
+    tratamientos?: tratamiento[]
 }

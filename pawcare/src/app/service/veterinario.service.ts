@@ -7,6 +7,9 @@ import { veterinario } from '../model/veterinario/veterinario';
   providedIn: 'root'
 })
 export class VeterinarioService {
+  findVeterinarioMascota(id: number): any {
+    throw new Error('Method not implemented.');
+  }
 
   constructor(
     private http: HttpClient

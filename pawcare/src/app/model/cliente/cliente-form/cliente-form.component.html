@@ -1,7 +1,5 @@
 <form (ngSubmit)="addCliente()" #mascotaForm="ngForm">
-    <h1>Agregar cliente</h1>
-    <br>
-  
+    <br>  
     <!-- Campo oculto para el ID -->
     <input type="number" name="id" id="id" [(ngModel)]="formCliente.id" hidden>
   
@@ -26,6 +24,15 @@
                             type="text"
                             [(ngModel)]="formCliente.correo"
                             name="correo"
+                            required
+                        />
+
+    <label for="clave">Contraseña:</label>
+                        <input
+                            id="clave"
+                            type="text"
+                            [(ngModel)]="formCliente.clave"
+                            name="clave"
                             required
                         />
   
