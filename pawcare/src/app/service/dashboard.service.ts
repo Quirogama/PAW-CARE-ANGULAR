@@ -18,6 +18,10 @@ export class DashboardService {
 
   // Método para obtener la cantidad total de tratamientos en el último mes (verifica si este es el endpoint correcto)
   getCantidadTratamientosUltimoMes(): Observable<number> {
-    return this.http.get<number>('http://localhost:8080/api/tratamientos/cantidadUltimoMes');  // Cambia esto si tu backend usa otra ruta
+    return this.http.get<number>('http://localhost:8080/api/tratamientos/cantidadUltimoMes');
+  }
+
+  getCantidadMascotasActivas(): Observable<number> {
+    return this.http.get<number>(`${this.apiUrlMascotas}/activas`);  // Llama al endpoint del backend
   }
 }

@@ -48,11 +48,16 @@ export class DashboardComponent implements OnInit {
         this.totalMascotas = data; // Asignamos los datos reales obtenidos desde el backend
       }
     );
+
+    this.dashboardService.getCantidadMascotasActivas().subscribe(
+      (data) => {
+        this.totalMascotasActivas = data; // Asignamos los datos reales obtenidos desde el backend
+      }
+    );
   
     // Valores simulados para otros KPIs (puedes reemplazarlos con llamados reales en el futuro)
     this.totalVeterinariosActivos = 10;
     this.totalVeterinariosInactivos = 3;
-    this.totalMascotasActivas = 45;
     this.ventasTotales = 5000;
     this.gananciasTotales = 2000;
   }
