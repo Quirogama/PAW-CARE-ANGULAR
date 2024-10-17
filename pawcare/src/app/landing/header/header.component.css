@@ -70,7 +70,8 @@ header {
   }
   
   .btnsignup,
-  .btnlogin {
+  .btnlogin,
+  .btnlogout {
     margin-left: 0;
     margin-right: 0;
     width: 95px;
@@ -84,6 +85,12 @@ header {
       background-color: #ffffff;
       color: #004d40;
       font-weight: bold;
+  }
+
+  .btnlogout {
+    background-color: #ffffff;
+    color: #004d40;
+    font-weight: bold;
   }
   
   .btnlogin {

@@ -1,32 +1,16 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  private userTypeSubject = new BehaviorSubject<string>('noauth'); // Valor inicial es 'noauth'
+  userType$ = this.userTypeSubject.asObservable();
 
-  setToken(token: string) {
-    localStorage.setItem('token', token);
-  }
+  constructor() { }
 
-  getToken(): string | null {
-    return localStorage.getItem('token');
-  }
-
-  clearToken() {
-    localStorage.removeItem('token');
-  }
-
-  decodeToken(token: string): any {
-    return JSON.parse(atob(token.split('.')[1]));  // Decodificamos el token simulado
-  }
-
-  getUserRole(): string | null {
-    const token = this.getToken();
-    if (token) {
-      const decodedToken = this.decodeToken(token);
-      return decodedToken.role;
-    }
-    return null;
+  setUserType(type: string) {
+    this.userTypeSubject.next(type);
   }
 }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/service/auth.service';
 
@@ -9,22 +9,31 @@ import { AuthService } from 'src/app/service/auth.service';
 })
 export class HeaderComponent implements OnInit {
 
-  @Input()
-  userType: string = "noauth";
+  userType: string = 'noauth'; // Valor por defecto
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
-    this.setUserType('noauth');
-  }
+    const storedUserType = localStorage.getItem('userType');
+    if (storedUserType) {
+        this.authService.setUserType(storedUserType); // Establece el userType desde localStorage
+    }
+    
+    this.authService.userType$.subscribe(type => {
+        this.userType = type; 
+    });
+}
 
-  ngOnChanges(): void {
-  }
+getUserId(): string | null {
+  return localStorage.getItem('id');
+}
 
-  logout(): void {
-  }
 
-  setUserType(tipo: string) {
-    this.userType = tipo;
-  }
+logout(): void {
+  this.authService.setUserType('noauth');
+  localStorage.removeItem('userType'); // Limpia el localStorage
+  localStorage.removeItem('id'); // Limpia el ID
+  this.router.navigate(['/login']);
+}
+
 }

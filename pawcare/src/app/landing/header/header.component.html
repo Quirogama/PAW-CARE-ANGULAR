@@ -5,35 +5,25 @@
       <h1>PAW CARE</h1>
     </div>
     <nav>
-     
-
-      <!-- Opción visible solo para clientes -->
-      <ng-container [ngSwitch]="userType"]>
+      <ng-container [ngSwitch]="userType">
         <ng-container *ngSwitchCase="'cliente'">
-          <a routerLink="/cliente/detail/"+cliente.id>MIS MASCOTAS"></a>
-          <a class="btnlogout" routerLink="/login">LOGOUT</a>
+          <a [routerLink]="['/cliente/detail', getUserId()]">PERFIL</a>
+          <a class="btnlogout" (click)="logout()">LOGOUT</a>
         </ng-container>
         <ng-container *ngSwitchCase="'veterinario'">
-        <!--  <a routerLink="/veterinarios">MIS MASCOTAS</a> -->
+          <a [routerLink]="['/veterinario/perfil', getUserId()]">PERFIL</a>
+          <a class="btnlogout" (click)="logout()">LOGOUT</a>
         </ng-container>
         <ng-container *ngSwitchCase="'administrador'">
           <a routerLink="/administrador/dashboard">DASHBOARD</a>
           <a routerLink="/mascotas">LISTA DE MASCOTAS</a>
           <a routerLink="/clientes">LISTA DE CLIENTES</a>
           <a routerLink="/veterinarios">LISTA DE VETERINARIOS</a>
-          <a class="btnlogout" routerLink="/login">LOGOUT</a>
+          <a class="btnlogout" (click)="logout()">LOGOUT</a>
         </ng-container>
         <ng-container *ngSwitchCase="'noauth'">
           <a routerLink="/home">INICIO</a>
-        <!--
-          <a routerLink="/" fragment="serv">SERVICIOS</a>
-          <a routerLink="/" fragment="gal">GALERIA DE PERROS</a>
-          <a routerLink="/" fragment="cont">CONTACTANOS</a>
-          -->  
-          <a routerLink="/administrador/dashboard">DASHBOARD</a>
-          <a routerLink="/mascotas">LISTA DE MASCOTAS</a>
-          <a routerLink="/clientes">LISTA DE CLIENTES</a>
-          <div  class="btn-container">
+          <div class="btn-container">
             <a class="btnlogin" routerLink="/login">Iniciar Sesión</a>
             <a class="btnsignup" routerLink="/cliente/crear-cuenta">Registrarse</a>
           </div>
