@@ -1,4 +1,9 @@
 <h1>LISTA DE VETERINARIOS</h1>
+<div class="boton-agregar">
+    <a routerLink="/mascota/form">
+        <button class="botonAgregar">Agregar Veterinario</button>
+    </a>
+</div>
 <table class="tabla">
     <thead>
         <tr>
@@ -19,8 +24,7 @@
                 <td class="botones">
                     <a routerLink="/veterinario/detail/{{veterinario.id}}"><button class="botonDetalle">Ver Detalles</button></a>
                     <a routerLink="/veterinario/edit/{{veterinario.id}}"><button class="botonEditar">Editar</button></a>
-                    <!--<button class="botonEliminar" (click)="eliminarCliente(cliente)">Eliminar</button>-->
-                    <button class="botonEliminar">Eliminar</button>
+                    <button class="botonEliminar" (click)="eliminarVeterinario(veterinario)">Eliminar</button>
                 </td>
             </ng-container>
         </tr>

@@ -33,7 +33,7 @@ export class VeterinarioTableComponent {
     this.veterinarioService.addVeterinario(veterinario); 
   }
 
-  eliminarveterinario(veterinario: veterinario) {
+  eliminarVeterinario(veterinario: veterinario) {
     var index = this.veterinarioList.indexOf(veterinario);
     this.veterinarioList.splice(index, 1);
     this.veterinarioService.deleteVeterinario(veterinario.id); 

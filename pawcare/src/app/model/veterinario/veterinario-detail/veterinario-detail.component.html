@@ -1,0 +1,14 @@
+<div class="contentUsuario">
+    <div class="info-usuario">
+        <ng-container *ngIf="veterinario">
+        <h1 class="username">{{veterinario.nombre}}</h1>
+        <img src="{{veterinario.imagen}}" class="imagenUsuario">
+        <div class="info-container">
+            <p><span>Cédula - </span>{{veterinario.cedula}}</p>
+            <p><span>Especialidad - </span>{{veterinario.especialidad}}</p>
+            <p><span>Atenciones - </span>{{veterinario.numAtenciones}}</p>
+        </div>
+        </ng-container>
+    </div>
+</div>
+    

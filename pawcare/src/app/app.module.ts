@@ -26,6 +26,8 @@ import { MascotaFormComponent } from './model/mascota/mascota-form/mascota-form.
 import { MascotaTableComponent } from './model/mascota/mascota-table/mascota-table.component';
 import { VeterinarioTableComponent } from './model/veterinario/veterinario-table/veterinario-table.component';
 import { VeterinarioEditComponent } from './model/veterinario/veterinario-edit/veterinario-edit.component';
+import { VeterinarioDetailComponent } from './model/veterinario/veterinario-detail/veterinario-detail.component';
+import { VeterinarioFormComponent } from './model/veterinario/veterinario-form/veterinario-form.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,7 +51,9 @@ import { VeterinarioEditComponent } from './model/veterinario/veterinario-edit/v
     ClienteEditComponent,
     VeterinarioTableComponent,
     DashboardComponent,
-    VeterinarioEditComponent
+    VeterinarioEditComponent,
+    VeterinarioDetailComponent,
+    VeterinarioFormComponent
   ],
   imports: [
     BrowserModule,
