@@ -9,5 +9,6 @@ export interface mascota {
     estado: string;
     edad: number;
     imagen: string;
+    cedulaCliente: number;
   }
   

@@ -44,6 +44,14 @@
   <input type="text" name="imagen" id="imagen" [(ngModel)]="formMascota.imagen">
   <br>
 
+    <!-- Cédula del Cliente -->
+  <label for="cedulaCliente">Cédula del Cliente*</label><br>
+  <select  type="number" [(ngModel)]="formMascota.cedulaCliente" id="cedulaCliente" name="cedulaCliente"required>
+    <option *ngFor="let cliente of clientes" [value]="cliente.cedula">{{ cliente.cedula }}</option>
+  </select>
+  <br>
+
+
   <!-- Botón para agregar mascota -->
   <button type="submit" class="botonAgregar">Agregar</button>
   <br>

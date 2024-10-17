@@ -3,6 +3,8 @@ import { mascota } from '../mascota';
 import { lastValueFrom } from 'rxjs';
 import { MascotaService } from 'src/app/service/mascota.service';
 import { Router, RouterLink } from '@angular/router';
+import { cliente } from '../../cliente/cliente';
+import { ClienteService } from 'src/app/service/cliente.service';
 
 @Component({
   selector: 'app-mascota-form',
@@ -18,6 +20,8 @@ export class MascotaFormComponent {
 
   mascotaList: mascota[] = [];
 
+  clientes: cliente[] = [];
+
   formMascota: mascota = {
     id: 0,
     nombre: '',
@@ -26,27 +30,35 @@ export class MascotaFormComponent {
     enfermedad: '',
     estado: '',
     edad: 1,
-    imagen: ''
+    imagen: '',
+    cedulaCliente: 0
   }
 
   constructor(private mascotaService: MascotaService,
+              private clienteService: ClienteService,
               private router: Router
   )
    {
    }
 
    ngOnInit(): void {
-    this.mascotaService.findAll().subscribe(
-      (mascotas) => {
-        this.mascotaList = mascotas;
-      }
-    );
+    this.mascotaService.findAll().subscribe((mascotas) => {
+      this.mascotaList = mascotas;
+    });
+
+    // Cargar la lista de clientes
+    this.clienteService.findAll().subscribe((clientes) => {
+      this.clientes = clientes;
+    });
   }
   addMascota() {
     if (this.validarFormulario()) {
       this.mascotaList.push(this.formMascota);
       this.mascotaService.addMascota(this.formMascota);
       this.formMascota.id = this.mascotaList.length + 1;
+
+      this.clienteService.addMascota(this.formMascota, this.formMascota.cedulaCliente);
+
       this.router.navigate(['/mascotas']);
     }
     else {

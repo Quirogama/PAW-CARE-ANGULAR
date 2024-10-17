@@ -27,9 +27,6 @@ export class MascotaDetailComponent {
   }
 
   ngOnInit(): void {
-    this.mascotaService.findById(this.mascota.id).subscribe(
-      (mascota) => this.mascota = mascota
-    );
   }
 
   ngOnChanges(): void {
