@@ -20,6 +20,9 @@
                         <label for="imagen">Imagen</label>
                         <input type="text" id="imagen" name="imagen" [(ngModel)]="veterinario.imagen" required>
 
+                        <label for="clave">Clave</label>
+                        <input type="text" id="clave" name="clave" [(ngModel)]="veterinario.clave" required>
+                        
                         <div class="botones">
                             <button type="submit" class="botonGuardar">Guardar</button>
                             <button type="button" class="botonCancelar" (click)="cancelar()">Cancelar</button>

@@ -5,6 +5,7 @@ export interface cliente {
     id: number;
     nombre: string;
     correo: string;
+    clave: string;
     cedula: number;
     celular: number;
     mascotas?: mascota[];

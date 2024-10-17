@@ -1,6 +1,10 @@
 <div class="container">
   <div class="left-section">
-    <img src="assets/img/husky.jpg" alt="Imagen de Mascota" class="mascot-image" />
+    <img
+      src="assets/img/husky.jpg"
+      alt="Imagen de Mascota"
+      class="mascot-image"
+    />
   </div>
   <div class="right-section">
     <h1 class="txtIniciarSesion">Inicio de Sesión</h1>
@@ -9,12 +13,19 @@
         type="text"
         id="cedula"
         name="cedula"
-        [(ngModel)]="cedula" 
+        [(ngModel)]="cedula"
         placeholder="Cédula"
         maxlength="9"
         pattern="\d*"
         title="Ingrese solo números"
         required
+      />
+      <input
+        type="text"
+        id="clave"
+        name="clave"
+        [(ngModel)]="clave"
+        placeholder="clave"
       />
       <button type="submit">Ingresar</button>
     </form>

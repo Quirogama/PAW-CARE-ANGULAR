@@ -17,7 +17,8 @@ export class VeterinarioEditComponent {
     nombre: '',
     especialidad: '',
     numAtenciones: 0,
-    imagen: ''
+    imagen: '',
+    clave: ''
   };
 
   constructor(private veterinarioService: VeterinarioService,

@@ -17,7 +17,8 @@ export class ClienteEditComponent {
     nombre: '',
     cedula: 0,
     correo: '',
-    celular: 0
+    celular: 0,
+    clave: ''
   };
   
   constructor(private clienteService: ClienteService,
