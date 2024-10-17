@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { DashboardService } from '../../service/dashboard.service'; // Asegúrate de importar el servicio correctamente
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  selector: 'app-dashboard',           // El nombre del componente
+  templateUrl: './dashboard.component.html', // La ruta al archivo HTML del componente
+  styleUrls: ['./dashboard.component.css']   // La ruta a los estilos CSS del componente
 })
 export class DashboardComponent implements OnInit {
 
@@ -30,17 +31,26 @@ export class DashboardComponent implements OnInit {
     { nombre: 'Tratamiento 3', unidadesVendidas: 60 }
   ];
 
-  constructor() { }
+  // Inyectamos el servicio en el constructor
+  constructor(private dashboardService: DashboardService) { }
 
   ngOnInit(): void {
-    // Inicializar con valores simulados
-    this.totalTratamientosMes = 120;          // Cantidad total de tratamientos en el último mes
-    this.totalVeterinariosActivos = 10;       // Veterinarios activos
-    this.totalVeterinariosInactivos = 3;      // Veterinarios inactivos
-    this.totalMascotas = 200;                 // Mascotas totales
-    this.totalMascotasActivas = 45;           // Mascotas en tratamiento
-    this.ventasTotales = 5000;                // Ventas totales
-    this.gananciasTotales = 2000;             // Ganancias totales
-  }
+    // Llamar al servicio para obtener la cantidad total de tratamientos en el último mes
+    this.dashboardService.getCantidadTratamientosUltimoMes().subscribe({
+      next: (data) => {
+        this.totalTratamientosMes = data; // Asignamos los datos reales obtenidos desde el backend
+      },
+      error: (err) => {
+        console.error('Error al obtener la cantidad de tratamientos: ', err);
+      }
+    });
 
+    // Valores simulados para otros KPIs (puedes reemplazarlos con llamados reales en el futuro)
+    this.totalVeterinariosActivos = 10;
+    this.totalVeterinariosInactivos = 3;
+    this.totalMascotas = 200;
+    this.totalMascotasActivas = 45;
+    this.ventasTotales = 5000;
+    this.gananciasTotales = 2000;
+  }
 }
