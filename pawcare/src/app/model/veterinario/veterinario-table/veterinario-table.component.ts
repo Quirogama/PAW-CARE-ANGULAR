@@ -11,20 +11,11 @@ export class VeterinarioTableComponent {
 
   selectedVeterinario!: veterinario;
 
-  veterinarioList: veterinario[] = [
-    {
-      id: 1,
-      cedula: 1234567890,
-      nombre: 'Juan Perez',
-      especialidad: 'Anestesiologo',
-      numeroAtenciones: 10,
-      imagen: 'assets/img/iconoVeterinario.jpg'
-    }
-  ];
+  veterinarioList: veterinario[] = [];
 
   constructor(private veterinarioService: VeterinarioService){ }
 
-  /*
+
   ngOnInit(): void {
     this.veterinarioService.findAll().subscribe(
       (veterinarios) => {
@@ -32,7 +23,6 @@ export class VeterinarioTableComponent {
       }
     )
   }
-  */
 
   mostrarVeterinario(veterinario: veterinario){
     this.selectedVeterinario = veterinario

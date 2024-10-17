@@ -3,6 +3,6 @@ export interface veterinario {
     cedula: number;
     nombre: string;
     especialidad: string;
-    numeroAtenciones: number;
+    numAtenciones: number;
     imagen: string;
 }
