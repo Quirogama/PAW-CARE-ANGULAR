@@ -20,7 +20,8 @@ export class ClienteFormComponent {
     nombre: '',
     correo: '',
     cedula: 0,
-    celular: 0
+    celular: 0,
+    clave: ''
   }
 
 

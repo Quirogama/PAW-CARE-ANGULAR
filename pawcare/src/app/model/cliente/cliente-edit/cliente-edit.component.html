@@ -50,6 +50,17 @@
                             required
                         />
                     </div>
+
+                    <div>
+                        <label for="clave">Contraseña:</label>
+                        <input
+                            id="clave"
+                            type="text"
+                            [(ngModel)]="cliente.clave"
+                            name="clave"
+                            required
+                        />
+                    </div>
                     <div class="botones">
                         <button type="submit" class="botonGuardar">Guardar Cambios</button>
                         <button type="button" (click)="cancelar()" class="botonCancelar">

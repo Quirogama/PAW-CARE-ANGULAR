@@ -16,6 +16,7 @@ import { MascotaTableComponent } from './model/mascota/mascota-table/mascota-tab
 import { VeterinarioTableComponent } from './model/veterinario/veterinario-table/veterinario-table.component';
 import { VeterinarioEditComponent } from './model/veterinario/veterinario-edit/veterinario-edit.component';
 import { VeterinarioDetailComponent } from './model/veterinario/veterinario-detail/veterinario-detail.component';
+import { VeterinarioPerfilComponent } from './model/veterinario/veterinario-perfil/veterinario-perfil.component';
 
 
 const routes: Routes = [
@@ -36,6 +37,7 @@ const routes: Routes = [
   { path: 'veterinarios', component: VeterinarioTableComponent},
   { path: 'veterinario/edit/:id', component: VeterinarioEditComponent},
   { path: 'veterinario/detail/:id', component: VeterinarioDetailComponent},
+  { path: 'veterinario/perfil/:id', component: VeterinarioPerfilComponent},
   //administrador
   { path: 'administrador/dashboard', component: AdministradorDashboardComponent},
   //dashboard
