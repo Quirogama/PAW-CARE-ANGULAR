@@ -6,6 +6,8 @@ export interface tratamiento {
     descripcion: string
     fecha: Date
     nombredroga: string
+    nombremascota: string
+    idmascota: number
     cedulaVeterinario: number
     Droga?: droga
     Veterinario?: veterinario

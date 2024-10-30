@@ -1,36 +1,77 @@
 <div class="contentUsuario">
     <div class="info-usuario">
-        <ng-container *ngIf="veterinario">
+      <ng-container *ngIf="veterinario">
         <h1 class="username">{{veterinario.nombre}}</h1>
         <img src="{{veterinario.imagen}}" class="imagenUsuario">
         <div class="info-container">
-            <p><span>Cédula - </span>{{veterinario.cedula}}</p>
-            <p><span>Especialidad - </span>{{veterinario.especialidad}}</p>
-            <p><span>Atenciones - </span>{{veterinario.numAtenciones}}</p>
+          <p><span>Cédula - </span>{{veterinario.cedula}}</p>
+          <p><span>Especialidad - </span>{{veterinario.especialidad}}</p>
+          <p><span>Atenciones - </span>{{veterinario.numAtenciones}}</p>
         </div>
-        </ng-container>
+        <div class="botonesVET">
+            <button (click)="mostrarTabla('mascotas')" class="botonToggle">Mascotas sin tratamiento<img src="assets/img/perroEnfermo.png" class="iconoBoton" alt="MASCOTAS"></button>
+            <button (click)="mostrarTabla('tratamientos')" class="botonToggle">Tratamientos activos<img src="assets/img/perroTratamiento.png" alt="TRATAMIENTO"></button>
+        </div>
+        <!-- Botones para alternar entre Mascotas y Tratamientos -->
+      </ng-container>
     </div>
+  
     <div class="tabla-container">
-        <button><a routerLink="/tratamiento/form">Registrar Tratamiento</a></button>
-        <h2>MASCOTAS EN TRATAMIENTO</h2>
-        <table class="tabla">
-            <thead>
-                <tr>
-                    <th>Fecha</th>
-                    <th>Descripcion</th>
-                    <th>Droga</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let tratamiento of tratamientos">
-                    <td>{{tratamiento.fecha}}</td>
-                    <td>{{tratamiento.descripcion}}</td>
-                    <td class="botones">
-                        <a routerLink="/tratamiento/detail/{{tratamiento.id}}"><button class="botonDetalles">Ver Detalles</button></a>
-                    </td>
-                </tr>
-        </table>
+      <!--<button><a routerLink="/tratamiento/form">Registrar Tratamiento</a></button>-->        
+      <h2 *ngIf="tablaActual === 'mascotas'">MASCOTAS EN OBSERVACIÓN</h2>
+      <h2 *ngIf="tablaActual === 'tratamientos'">MASCOTAS EN TRATAMIENTO</h2>
+  
+      <!-- Tabla de Mascotas en Observación -->
+      <table *ngIf="tablaActual === 'mascotas'" class="tabla">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Raza</th>
+            <th>Edad</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let mascota of mascotasEnObservacion">
+              <td>{{mascota.nombre}}</td>
+              <td>{{mascota.raza}}</td>
+              <td>{{mascota.edad}}</td>
+              <td>{{mascota.estado}}</td>
+              <td class="botones">
+                <!-- Botón para Registrar Tratamiento -->
+                <a routerLink="/tratamiento/form/{{mascota.id}}">
+                    <button class="botonDetalles">Asignar Tratamiento</button>
+                  </a>
+                <!-- Botón para Ver Detalles de la Mascota -->
+                <a routerLink="/mascota/detail/{{mascota.id}}">
+                  <button class="botonDetalles">Ver Detalles</button>
+                </a>
+              </td>
+            </tr>
+          </tbody>       
+      </table>
+  
+      <!-- Tabla de Tratamientos -->
+      <table *ngIf="tablaActual === 'tratamientos'" class="tabla">
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th>Descripción</th>
+            <th>Droga</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let tratamiento of tratamientos">
+            <td>{{tratamiento.fecha}}</td>
+            <td>{{tratamiento.descripcion}}</td>
+            <td class="botones">
+              <a routerLink="/tratamiento/detail/{{tratamiento.id}}"><button class="botonDetalles">Ver Detalles</button></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-</div>
-
+  </div>
+  

@@ -138,6 +138,7 @@ p span {
   height: fit-content;
   margin-left: 2%;
   margin-top: 2%;
+  margin-bottom: 2%;
   border-radius: 20px;
 }
 
@@ -192,6 +193,43 @@ p span {
   font-weight: 500;
 }
 
+.botonesVET{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-left: 2.5%;
+  margin-right: 2.5%;
+}
+
+.botonToggle{
+  padding: 5px;
+  font-size: 14px;
+  background-color: white;
+  border: 0px solid #000;
+  box-shadow: 0 4px 50px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s; /* Transiciones suaves */
+  color: #00695e;
+  border-radius: 5px;
+  cursor: pointer; 
+  width: 200px;
+  height: 150px;
+  font-weight: bold;
+  margin: 5px;
+}
+
+.botonToggle:hover{
+  transform: translateY(-5px); /* Elevar ligeramente al hacer hover */
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2); /* Sombra más grande al hacer hover */
+}
+
+.botonesVET img{
+  width: 105px;
+  height: 105px;
+  border-radius: 0%;
+  border: none;
+  margin-top: 10px;
+}
+
 .botonDetalles{
   padding: 5px;
     font-size: 14px;
@@ -200,6 +238,12 @@ p span {
     color: white;
     border-radius: 5px;
     cursor: pointer; 
+}
+
+.botones{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .verde{
