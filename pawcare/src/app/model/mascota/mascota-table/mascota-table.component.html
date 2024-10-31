@@ -32,7 +32,7 @@
                 <td>{{mascota.edad}}</td>
                 <td class="botones">
                     <a routerLink="/mascota/detail/{{mascota.id}}"><button class="botonDetalle">Ver Detalles</button></a>
-                    <a routerLink="/mascota/edit/{{mascota.id}}"><button class="botonEditar">Editar</button></a>
+                    <a routerLink="/mascota/edit/{{mascota.id}}"><button class="botonEditar" id="btnEditarMascota">Editar</button></a>
                     <button class="botonEliminar" (click)="eliminarMascota(mascota)">Eliminar</button>
                 </td>
             </ng-container>
