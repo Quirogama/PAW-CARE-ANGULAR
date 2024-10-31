@@ -14,10 +14,9 @@
             <option *ngFor="let droga of drogas" [value]="droga.nombre">{{ droga.nombre }}</option>
         </select>
 
-        <label for="mascota">Mascota:</label>
-        <select [(ngModel)]="selectedMascota" (ngModelChange)="getMascotaId($event)">
-            <option *ngFor="let mascota of mascotas" [value]="mascota">{{ mascota.nombre }}</option>
-        </select>
+        <!-- Mostrar el nombre de la mascota seleccionada -->
+        <p>ID de la mascota seleccionada: {{ selectedMascota.id }}</p>
+        
 
         <input type="number" name="cedulaVeterinario" id="cedulaVeterinario" [(ngModel)]="formTratamiento.cedulaVeterinario" hidden>
     
