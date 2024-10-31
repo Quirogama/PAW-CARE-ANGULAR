@@ -6,6 +6,7 @@ import { TratamientoService } from 'src/app/service/tratamiento.service';
 import { droga } from '../../droga/droga';
 import { mascota } from '../../mascota/mascota';
 import { MascotaService } from 'src/app/service/mascota.service';
+import { tratamientoDTO } from './tratamientoDTO';
 
 @Component({
   selector: 'app-tratamiento-form',
@@ -17,11 +18,29 @@ export class TratamientoFormComponent {
   @Output()
   addTratamientoEvent = new EventEmitter<tratamiento>()
 
-
+  tratamientoDTO: tratamientoDTO = {
+    id: 0,
+    descripcion: '',
+    fecha: new Date
+  }
 
   drogas: droga[] = [];
 
   mascotas: mascota[] = [];
+
+  selectedMascota: mascota = {
+    id: 0,
+    nombre: '',
+    peso: '',
+    raza: '',
+    enfermedad: '',
+    estado: '',
+    edad: 1,
+    imagen: '',
+    cedulaCliente: 0
+  };
+
+  tratamientos: tratamiento[] = [];
 
   formTratamiento: tratamiento = {
     id: 0,
@@ -49,9 +68,14 @@ export class TratamientoFormComponent {
     this.mascotaService.findAll().subscribe((mascotas) => {
       this.mascotas = mascotas;
     })
+    this.tratamientoService.findAll().subscribe((tratamientos) => {
+      this.tratamientos = tratamientos;
+    })
   }
 
-  selectedMascota: any;
+  getUserId(): string | null {
+    return localStorage.getItem('id');
+  }
 
   getMascotaId(event: any) {
     this.formTratamiento.nombremascota = event.nombre;
@@ -59,17 +83,18 @@ export class TratamientoFormComponent {
   }
 
   addTratamiento(){
-    alert("Tratamiento agregado");
-    this.route.params.subscribe(params => {
-      this.formTratamiento.cedulaVeterinario = params['id'];
-    })
-    const mascotaId = this.formTratamiento.idmascota;
-    this.mascotaService.findById(mascotaId).subscribe((mascota) => {
-      this.formTratamiento.nombremascota = mascota.nombre;
-    })
+    this.tratamientoDTO.id = this.tratamientos.length + 1;
+    this.tratamientoDTO.descripcion = this.formTratamiento.descripcion;
+    this.tratamientoDTO.fecha = this.formTratamiento.fecha;
 
-    this.tratamientoService.addTratamiento(this.formTratamiento);
-    this.router.navigate(['/veterinario/perfil/{id}']);
+    console.log("TRATAMIENTO DTO --> ", this.tratamientoDTO);
+    console.log("MASCOTA --> ", this.selectedMascota);
+
+    this.tratamientoService.agregarTratamiento(9991234,"ACOLAN", 9, this.tratamientoDTO);
+
+    this.addTratamientoEvent.emit(this.formTratamiento);
+
+    this.router.navigate(['/veterinario/perfil/' + this.getUserId()]);  
   }
 
 }

@@ -43,7 +43,7 @@ const routes: Routes = [
   { path: 'veterinario/detail/:id', component: VeterinarioDetailComponent},
   { path: 'veterinario/perfil/:id', component: VeterinarioPerfilComponent},
   { path: 'veterinario/form', component: VeterinarioFormComponent},
-  { path: 'tratamiento/form', component: TratamientoFormComponent},
+  { path: 'tratamiento/form/:id', component: TratamientoFormComponent},
   //administrador
   { path: 'administrador/dashboard', component: AdministradorDashboardComponent},
   //dashboard
