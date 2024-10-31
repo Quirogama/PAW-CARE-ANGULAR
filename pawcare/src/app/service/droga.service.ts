@@ -20,7 +20,7 @@ export class DrogaService {
     return this.http.get<droga>('http://localhost:8080/droga/'+id);
   }
 
-  findByNombre(nombre: string): Observable<droga[]> {
-    return this.http.get<droga[]>('http://localhost:8080/droga/'+nombre);
+  findByNombre(nombre: string): Observable<droga> {
+    return this.http.get<droga>('http://localhost:8080/droga/nombre/'+nombre);
   }
 }
