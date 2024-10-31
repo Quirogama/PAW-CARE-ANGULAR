@@ -38,6 +38,7 @@ export class VeterinarioPerfilComponent {
         mergeMap(
           (veterinarioInfo) => {
             this.veterinario = veterinarioInfo;
+            console.log(this.veterinario);
             return this.veterinarioService.findVeterinarioTratamientos(this.veterinario.id);
           }
         )

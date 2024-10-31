@@ -27,8 +27,7 @@
           <tr>
             <th>Nombre</th>
             <th>Raza</th>
-            <th>Edad</th>
-            <th>Estado</th>
+            <th>enfermedad</th>
             <th>Acciones</th>
           </tr>
         </thead>
@@ -36,8 +35,7 @@
             <tr *ngFor="let mascota of mascotasEnObservacion">
               <td>{{mascota.nombre}}</td>
               <td>{{mascota.raza}}</td>
-              <td>{{mascota.edad}}</td>
-              <td>{{mascota.estado}}</td>
+              <td>{{mascota.enfermedad}}</td>
               <td class="botones">
                 <!-- Botón para Registrar Tratamiento -->
                 <a routerLink="/tratamiento/form/{{mascota.id}}">
