@@ -15,18 +15,18 @@
           <a class="btnlogout" (click)="logout()">LOGOUT</a>
         </ng-container>
         <ng-container *ngSwitchCase="'administrador'">
-          <a routerLink="/administrador/dashboard">PERFIL PRINCIPAL</a>
-          <a routerLink="/mascotas">LISTA DE MASCOTAS</a>
-          <a routerLink="/clientes">LISTA DE CLIENTES</a>
-          <a routerLink="/veterinarios">LISTA DE VETERINARIOS</a>
-          <a routerLink="/dashboard">DASHBOARD</a>
+          <a routerLink="/administrador/dashboard" id="btnPerfilPrincipalHeader">PERFIL PRINCIPAL</a>
+          <a routerLink="/mascotas" id="btnMascotasHeader">LISTA DE MASCOTAS</a>
+          <a routerLink="/clientes" id="btnClientesHeader">LISTA DE CLIENTES</a>
+          <a routerLink="/veterinarios" id="btnVeterinariosHeader">LISTA DE VETERINARIOS</a>
+          <a routerLink="/dashboard" id="btnDashboardHeader">DASHBOARD</a>
           <a class="btnlogout" (click)="logout()">LOGOUT</a>
         </ng-container>
         <ng-container *ngSwitchCase="'noauth'">
           <a routerLink="/home">INICIO</a>
           <div class="btn-container">
-            <a class="btnlogin" routerLink="/login">Iniciar Sesión</a>
-            <a class="btnsignup" routerLink="/cliente/crear-cuenta">Registrarse</a>
+            <a class="btnlogin" id="btnLogin" routerLink="/login">Iniciar Sesión</a>
+            <a class="btnsignup" id="btnSignUp" routerLink="/cliente/crear-cuenta">Registrarse</a>
           </div>
         </ng-container>
       </ng-container>
