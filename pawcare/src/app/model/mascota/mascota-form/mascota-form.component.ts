@@ -5,6 +5,7 @@ import { MascotaService } from 'src/app/service/mascota.service';
 import { Router, RouterLink } from '@angular/router';
 import { cliente } from '../../cliente/cliente';
 import { ClienteService } from 'src/app/service/cliente.service';
+import { mascotaDTO } from './mascotaDTO';
 
 @Component({
   selector: 'app-mascota-form',
@@ -17,6 +18,17 @@ export class MascotaFormComponent {
   addMascotaEvent = new EventEmitter<mascota>();
 
   sendMascota!: mascota;
+
+  mascotaDTO: mascotaDTO = {
+    id: 0,
+    nombre: '',
+    peso: '',
+    raza: '',
+    enfermedad: '',
+    estado: '',
+    edad: 1,
+    imagen: ''
+  }
 
   mascotaList: mascota[] = [];
 
@@ -51,7 +63,7 @@ export class MascotaFormComponent {
       this.clientes = clientes;
     });
   }
-  addMascota() {
+  /*addMascota() {
     if (this.validarFormulario()) {
       this.mascotaList.push(this.formMascota);
       this.mascotaService.addMascota(this.formMascota);
@@ -65,6 +77,31 @@ export class MascotaFormComponent {
       alert('Todos los campos marcados con * son obligatorios');
     }
   }
+    */
+  addMascota() : void {
+    this.mascotaDTO.id = this.mascotaList.length + 1;
+    this.mascotaDTO.nombre = this.formMascota.nombre;
+    this.mascotaDTO.peso = this.formMascota.peso.toString();    
+    this.mascotaDTO.raza = this.formMascota.raza;
+    this.mascotaDTO.enfermedad = this.formMascota.enfermedad;
+    this.mascotaDTO.estado = this.formMascota.estado;
+    this.mascotaDTO.edad = this.formMascota.edad;
+    this.mascotaDTO.imagen = this.formMascota.imagen;
+
+    console.log(this.mascotaDTO);
+    console.log(this.formMascota.cedulaCliente);
+
+    this.mascotaService.agregarMascota(this.formMascota.cedulaCliente, this.mascotaDTO).subscribe(
+      (response) => {
+        console.log('Mascota agregada:', response);
+        this.addMascotaEvent.emit(this.sendMascota);
+        this.router.navigate(['/mascotas']);
+      },
+    (error) => {
+      console.error('Error al agregar la mascota:', error);
+    });
+  }
+
   
   validarFormulario() {
     if (!this.formMascota.nombre || !this.formMascota.peso || !this.formMascota.raza || 

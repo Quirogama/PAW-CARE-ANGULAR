@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { mascota } from '../model/mascota/mascota';
 import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { mascotaDTO } from '../model/mascota/mascota-form/mascotaDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -35,6 +36,10 @@ findAll(): Observable<mascota[]> {
 
   addMascota(nuevaMascota: mascota) {
     this.http.post('http://localhost:8080/mascota/registro', nuevaMascota).subscribe();
+  }
+
+  agregarMascota(cedula: number, mascotaDTO: mascotaDTO): Observable<any>{
+    return this.http.post('http://localhost:8080/mascota/agregar/'+cedula, mascotaDTO);
   }
 
   addMascotaForm(mascota: mascota) {
