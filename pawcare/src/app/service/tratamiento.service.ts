@@ -22,6 +22,9 @@ export class TratamientoService {
     return this.http.post(`http://localhost:8080/tratamiento/agregar/${idVET}/${idMASC}/${idDROGA}`, null, params);
   }
 
+  finalizarTratamiento(id: number) {
+    this.http.delete('http://localhost:8080/tratamiento/eliminar/'+id).subscribe();
+  }
 
   findAll(): Observable<tratamiento[]> {
     return this.http.get<tratamiento[]>('http://localhost:8080/tratamiento/all');

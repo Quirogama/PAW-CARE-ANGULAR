@@ -6,6 +6,7 @@ import { tratamiento } from '../../tratamiento/tratamiento';
 import { mergeMap } from 'rxjs';
 import { mascota } from '../../mascota/mascota';
 import { MascotaService } from 'src/app/service/mascota.service';
+import { TratamientoService } from 'src/app/service/tratamiento.service';
 
 @Component({
   selector: 'app-veterinario-perfil',
@@ -24,10 +25,12 @@ export class VeterinarioPerfilComponent {
   @Input()
   tratamientos: tratamiento[] = [];
 
+  tratamiento!: tratamiento;
   
   mascotasEnObservacion: mascota[] = []; // Lista de mascotas en observación
 
-  constructor(private veterinarioService: VeterinarioService,
+  constructor(private tratamientoService: TratamientoService,
+              private veterinarioService: VeterinarioService,
               private mascotaService: MascotaService,
               private route: ActivatedRoute,
               private router: Router
@@ -82,5 +85,10 @@ export class VeterinarioPerfilComponent {
 
   mostrarTabla(tabla: string) {
     this.tablaActual = tabla; // Cambia entre 'mascotas' y 'tratamientos'
+  }
+
+  finalizarTratamiento(tratamiento: tratamiento) {
+    console.log("ID TRATAMIENTO --> "+tratamiento.id);
+    this.tratamientoService.finalizarTratamiento(tratamiento.id);
   }
 }

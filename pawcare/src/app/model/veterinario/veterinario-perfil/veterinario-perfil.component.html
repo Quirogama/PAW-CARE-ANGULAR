@@ -56,7 +56,7 @@
           <tr>
             <th>Fecha</th>
             <th>Descripción</th>
-            <th>Droga</th>
+            <th>Nombre Mascota</th>
             <th>Acciones</th>
           </tr>
         </thead>
@@ -64,8 +64,10 @@
           <tr *ngFor="let tratamiento of tratamientos">
             <td>{{tratamiento.fecha}}</td>
             <td>{{tratamiento.descripcion}}</td>
+            <td>{{tratamiento.idmascota}}</td>
             <td class="botones">
               <a routerLink="/tratamiento/detail/{{tratamiento.id}}"><button class="botonDetalles">Ver Detalles</button></a>
+              <a (click)="finalizarTratamiento(tratamiento)"><button class="botonDetalles">Finalizar Tratamiento</button></a>
             </td>
           </tr>
         </tbody>

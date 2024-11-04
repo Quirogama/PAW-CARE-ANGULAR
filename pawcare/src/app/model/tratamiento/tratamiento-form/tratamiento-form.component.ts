@@ -61,7 +61,7 @@ export class TratamientoFormComponent {
   }
 
   ngOnInit(): void {
-    this.drogaService.findAll().subscribe((drogas) => {
+    this.drogaService.findAlldisp().subscribe((drogas) => {
       this.drogas = drogas;
     })
     this.mascotaService.findAll().subscribe((mascotas) => {

@@ -31,6 +31,7 @@ import { VeterinarioFormComponent } from './model/veterinario/veterinario-form/v
 import { VeterinarioPerfilComponent } from './model/veterinario/veterinario-perfil/veterinario-perfil.component';
 import { TratamientoFormComponent } from './model/tratamiento/tratamiento-form/tratamiento-form.component';
 import { ClienteRegistroComponent } from './model/cliente/cliente-registro/cliente-registro.component';
+import { TratamientoDetailComponent } from './model/tratamiento/tratamiento-detail/tratamiento-detail.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,7 +60,8 @@ import { ClienteRegistroComponent } from './model/cliente/cliente-registro/clien
     VeterinarioFormComponent,
     VeterinarioPerfilComponent,
     TratamientoFormComponent,
-    ClienteRegistroComponent
+    ClienteRegistroComponent,
+    TratamientoDetailComponent
   ],
   imports: [
     BrowserModule,
