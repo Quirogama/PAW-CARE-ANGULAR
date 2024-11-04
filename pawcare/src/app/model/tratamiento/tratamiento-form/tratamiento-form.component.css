@@ -2,7 +2,7 @@ form {
     flex-direction: column;
     gap: 0px; /* Espacio entre los elementos del formulario */
     margin: 0 auto; /* Centra el formulario en la página */
-    width: 350px;
+    width: max-content;
     padding-bottom: 100px;
     padding-top: 100px;
     justify-content: center;

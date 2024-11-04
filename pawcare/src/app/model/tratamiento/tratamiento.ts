@@ -4,7 +4,7 @@ import { veterinario } from "../veterinario/veterinario"
 export interface tratamiento {
     id: number
     descripcion: string
-    fecha: Date
+    fecha: String
     nombredroga: string
     nombremascota: string
     idmascota: number

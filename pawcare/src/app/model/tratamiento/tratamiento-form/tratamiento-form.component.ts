@@ -19,12 +19,12 @@ export class TratamientoFormComponent {
   addTratamientoEvent = new EventEmitter<tratamiento>()
 
   @Input()
-  selectedMascota!: mascota;
+  mascotaSeleccionada!: mascota;
 
   tratamientoDTO: tratamientoDTO = {
     id: 0,
     descripcion: '',
-    fecha: new Date
+    fecha: ''
   }
 
   drogaID: number = 0;
@@ -38,7 +38,7 @@ export class TratamientoFormComponent {
   formTratamiento: tratamiento = {
     id: 0,
     descripcion: '',
-    fecha: new Date,
+    fecha: '',
     nombredroga: '',
     nombremascota: '',
     idmascota: 0,
@@ -51,7 +51,12 @@ export class TratamientoFormComponent {
               private tratamientoService: TratamientoService,
               private mascotaService: MascotaService
   ) { 
-
+    this.route.paramMap.subscribe(params => {
+      const id = Number(params.get('id'));
+      this.mascotaService.findById(id).subscribe(
+        (mascota) => this.mascotaSeleccionada = mascota
+      );
+    })
   }
 
   ngOnInit(): void {
@@ -81,31 +86,44 @@ export class TratamientoFormComponent {
   }
 
   addTratamiento(){
-    console.log(this.formTratamiento);
-    this.drogaService.findByNombre(this.formTratamiento.nombredroga).subscribe((droga) => {
-      this.drogaID = droga.id;
-    })
-
     this.tratamientoDTO.id = this.tratamientos.length + 1;
     this.tratamientoDTO.descripcion = this.formTratamiento.descripcion;
     this.tratamientoDTO.fecha = this.formTratamiento.fecha;
 
+    console.log("DESCRIPCION --> "+this.tratamientoDTO.descripcion);
+
+    console.log(this.formTratamiento);
+    this.drogaService.findByNombre(this.formTratamiento.nombredroga).subscribe(
+      (droga) => {
+        this.drogaID = droga.id;
+        const userId = this.getUserIdint();
+        if (userId !== null) {
+          this.tratamientoService.agregarTratamiento(userId, this.mascotaSeleccionada.id, this.drogaID, this.tratamientoDTO)
+            .subscribe(
+              (response) => {
+                console.log("Tratamiento enviado al backend con éxito");
+                console.log("VETERINARIO ID --> ", userId);
+                console.log("MASCOTA ID --> ", this.mascotaSeleccionada.id);
+                console.log("DROGA ID --> ", this.drogaID);
+                console.log("TRATAMIENTO DTO --> ", this.tratamientoDTO);
+              },
+              (error) => {
+                console.error("Error al agregar el tratamiento", error);
+              }
+            );
+        } else {
+          console.error("User ID es nulo, no se puede agregar el tratamiento.");
+        }
+      },
+      (error) => {
+        console.error("Error al buscar la droga", error);
+      }
+    );
+    
+    
  
 
-    const userId = this.getUserIdint();
-
-
-    if (userId !== null) {
-      console.log("USER ID --> ", userId);
-      console.log("MASCOTA ID --> ", this.selectedMascota.id);
-      console.log("DROGA ID --> ", this.drogaID);
-      console.log("TRATAMIENTO DTO --> ", this.tratamientoDTO);
-
-      console.log(userId, this.selectedMascota.id, this.drogaID, this.tratamientoDTO);
-      this.tratamientoService.agregarTratamientoID(userId, this.selectedMascota.id, this.drogaID, this.tratamientoDTO);
-    } else {
-      // handle the case where userId is null
-    }
+    
     this.router.navigate(['/veterinario/perfil/' + this.getUserId()]);  
   }
 

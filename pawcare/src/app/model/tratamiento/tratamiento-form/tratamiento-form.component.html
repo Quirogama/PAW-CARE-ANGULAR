@@ -15,7 +15,12 @@
         </select>
 
         <!-- Mostrar el nombre de la mascota seleccionada -->
-        <p>ID de la mascota seleccionada: {{ selectedMascota.id }}</p>
+        <div class="info-mascota" *ngIf="mascotaSeleccionada">
+            <p>ID de la mascota seleccionada: {{ mascotaSeleccionada.id }}</p>
+            <p>Nombre de la mascota seleccionada: {{ mascotaSeleccionada.nombre }}</p>
+            <p>Enfermedad de la mascota seleccionada: {{ mascotaSeleccionada.enfermedad }}</p>
+        </div>
+        
         
 
         <input type="number" name="cedulaVeterinario" id="cedulaVeterinario" [(ngModel)]="formTratamiento.cedulaVeterinario" hidden>

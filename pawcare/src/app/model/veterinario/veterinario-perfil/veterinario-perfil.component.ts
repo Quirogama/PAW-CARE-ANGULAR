@@ -59,11 +59,21 @@ export class VeterinarioPerfilComponent {
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       const id = Number(params.get('id'));
-      this.veterinarioService.findById(id).subscribe(
-        (veterinario) => this.veterinario = veterinario
-      );
+      this.veterinarioService.findById(id).subscribe({
+        next: (veterinario) => {
+          this.veterinario = veterinario;
+          console.log("Datos del veterinario obtenidos:", veterinario);
+        },
+        error: (error) => {
+          console.error("Error al obtener el veterinario:", error);
+        },
+        complete: () => {
+          console.log("Solicitud de datos del veterinario completada.");
+        }
+      });
     });
   }
+  
 
   filtrarMascotasEnObservacion() {
     this.mascotasEnObservacion = this.mascotas.filter(mascota => mascota.estado === "En observación");

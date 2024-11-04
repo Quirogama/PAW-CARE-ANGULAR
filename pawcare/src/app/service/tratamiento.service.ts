@@ -17,22 +17,9 @@ export class TratamientoService {
     return this.http.post('http://localhost:8080/tratamiento/add',tratamiento);
   }
 
-  ///agregar/{cedula}/{nombredroga}/{id}
-  agregarTratamiento(cedula: number, nombredroga: string, idmascota: number, tratamientoDTO: tratamientoDTO) {
-    return this.http.post('http://localhost:8080/tratamiento/agregar/'+cedula+'/'+nombredroga+'/'+idmascota, tratamientoDTO);
-  }
-
-  agregarTratamientoVD(cedula: number, nombredroga: string, tratamientoDTO: tratamientoDTO) {
-    return this.http.post('http://localhost:8080/tratamiento/agregar/'+cedula+'/'+nombredroga, tratamientoDTO);
-  }
-
-  agregarTratamientoM(idmascota: number, tratamientoDTO: tratamientoDTO) {
-    return this.http.post('http://localhost:8080/tratamiento/agregar/'+idmascota, tratamientoDTO);
-  }
-
-
-//    @PostMapping("/agregar/{idVET}/{idMASC}/{idDROGA}")
-  agregarTratamientoID(idVET: number, idMASC: number, idDROGA: number, tratamientoDTO: tratamientoDTO) {
+  //@PostMapping("/tratamiento/agregar/{idVET}/{idMASC}/{idDROGA}")
+  agregarTratamiento(idVET: number, idMASC: number, idDROGA: number, tratamientoDTO: tratamientoDTO) {
+    console.log("\n\nTratamiento ENVIADO al backend --> ",tratamientoDTO+"\n\n");
     return this.http.post(`http://localhost:8080/tratamiento/agregar/${idVET}/${idMASC}/${idDROGA}`, tratamientoDTO);
   }
 
