@@ -3,15 +3,15 @@
             <section class="macotaCLASS">
                 <div class="mascota-info">
                     <div>
-                        <h1>Detalles de mascota</h1>
+                        <h1>{{mascota.nombre}}</h1>
                         <img src="{{mascota.imagen}}" class="imagenMascota">
-                        <p>ID: {{mascota.id}}</p>
-                        <p>Nombre: {{mascota.nombre}}</p>
                         <p>Peso: {{mascota.peso}}kg</p>
                         <p>Raza: {{mascota.raza}}</p>
                         <p>Enfermedad: {{mascota.enfermedad}}</p>
-                        <p>Estado: {{mascota.estado}}</p>
                         <p>Edad: {{mascota.edad}}</p>
+                        <p>Estado: {{mascota.estado}}</p>
+                        <p *ngIf="mascota.estado === 'En tratamiento'" >Droga suministrada: {{droga.nombre}}</p>
+                        <button class="botonHistorial">Historial medico</button>
                     </div>
                 </div>
               </section>

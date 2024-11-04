@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { veterinario } from '../model/veterinario/veterinario';
 import { tratamiento } from '../model/tratamiento/tratamiento';
+import { mascota } from '../model/mascota/mascota';
 
 @Injectable({
   providedIn: 'root'
@@ -42,6 +43,11 @@ export class VeterinarioService {
   updateVeterinario(updatedVeterinario: veterinario): Observable<veterinario> {
     console.log('Datos enviados para actualización:', updatedVeterinario);
     return this.http.put<veterinario>('http://localhost:8080/veterinario/modificar/' + updatedVeterinario.id, updatedVeterinario);
+  }
+
+  ///mascotas/tratamiento/{id}
+  findVeterinarioMascotas(id: number): Observable<mascota[]> {
+    return this.http.get<mascota[]>('http://localhost:8080/veterinario/mascotas/tratamiento/'+id);
   }
   
 }

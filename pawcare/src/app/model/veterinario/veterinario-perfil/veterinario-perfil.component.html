@@ -50,23 +50,23 @@
           </tbody>       
       </table>
   
-      <!-- Tabla de Tratamientos -->
+      <!-- Tabla de mascotas en tratamiento -->
       <table *ngIf="tablaActual === 'tratamientos'" class="tabla">
         <thead>
           <tr>
-            <th>Fecha</th>
-            <th>Descripción</th>
-            <th>Nombre Mascota</th>
+            <th>Nombre</th>
+            <th>Enfermedad</th>
+            <th>Estado</th>
             <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let tratamiento of tratamientos">
-            <td>{{tratamiento.fecha}}</td>
-            <td>{{tratamiento.descripcion}}</td>
-            <td>{{tratamiento.idmascota}}</td>
+          <tr *ngFor="let mascota of mascotasEnTratamiento">
+            <td>{{mascota.nombre}}</td>
+            <td>{{mascota.enfermedad}}</td>
+            <td>{{mascota.estado}}</td>
             <td class="botones">
-              <a routerLink="/tratamiento/detail/{{tratamiento.id}}"><button class="botonDetalles">Ver Detalles</button></a>
+              <a routerLink="/mascota/detail/{{mascota.id}}"><button class="botonDetalles">Ver Detalles</button></a>
               <a (click)="finalizarTratamiento(tratamiento)"><button class="botonDetalles">Finalizar Tratamiento</button></a>
             </td>
           </tr>

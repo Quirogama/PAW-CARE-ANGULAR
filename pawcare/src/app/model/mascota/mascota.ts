@@ -1,4 +1,5 @@
 import { cliente } from "../cliente/cliente";
+import { tratamiento } from "../tratamiento/tratamiento";
 
 export interface mascota {
     id: number;
@@ -10,5 +11,6 @@ export interface mascota {
     edad: number;
     imagen: string;
     cedulaCliente: number;
+    tratamiento?: tratamiento;
   }
   

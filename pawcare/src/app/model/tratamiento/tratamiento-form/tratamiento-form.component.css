@@ -61,10 +61,14 @@ input {
 select {
     margin-top: 0px;
     margin-bottom: 10px;
-    width: 100%
+    width: 100%;
 }
 
 button {
    width: 100%;
    margin-top: 10px;
+}
+
+.info-mascota{
+    width: max-content;
 }

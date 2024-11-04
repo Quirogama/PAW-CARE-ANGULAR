@@ -29,6 +29,8 @@ export class VeterinarioPerfilComponent {
   
   mascotasEnObservacion: mascota[] = []; // Lista de mascotas en observación
 
+  mascotasEnTratamiento: mascota[] = [];
+
   constructor(private tratamientoService: TratamientoService,
               private veterinarioService: VeterinarioService,
               private mascotaService: MascotaService,
@@ -50,7 +52,22 @@ export class VeterinarioPerfilComponent {
           this.tratamientos = tratamientos;
         }
       )
+
+      this.veterinarioService.findVeterinarioMascotas(id).subscribe({
+        next: (mascotas) => {
+          this.mascotasEnTratamiento = mascotas;
+          console.log("Lista de mascotas obtenida:", mascotas);
+        },
+        error: (error) => {
+          console.error("Error al obtener la lista de mascotas:", error);
+        },
+        complete: () => {
+          console.log("Solicitud de lista de mascotas completada.");
+        }
+      });
     });
+
+    
     
     // Obtener y filtrar mascotas
     this.mascotaService.findAll().subscribe((mascotas) => {
@@ -84,11 +101,13 @@ export class VeterinarioPerfilComponent {
   }
 
   mostrarTabla(tabla: string) {
-    this.tablaActual = tabla; // Cambia entre 'mascotas' y 'tratamientos'
+    this.tablaActual = tabla;
   }
 
   finalizarTratamiento(tratamiento: tratamiento) {
     console.log("ID TRATAMIENTO --> "+tratamiento.id);
     this.tratamientoService.finalizarTratamiento(tratamiento.id);
+    var index = this.tratamientos.indexOf(tratamiento);
+    this.tratamientos.splice(index, 1);
   }
 }

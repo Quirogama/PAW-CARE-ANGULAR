@@ -9,7 +9,7 @@
         <label for="descripcion">Descripción:</label>
         <input id="descripcion" name="descripcion" type="text" [(ngModel)]="formTratamiento.descripcion" />
 
-        <label for="nombreDroga">Droga:</label>
+        <label for="nombreDroga">Droga:</label><br>
         <select id="nombreDroga" name="nombreDroga" type="text" [(ngModel)]="formTratamiento.nombredroga" required>
             <option *ngFor="let droga of drogas" [value]="droga.nombre">{{ droga.nombre }}</option>
         </select>
