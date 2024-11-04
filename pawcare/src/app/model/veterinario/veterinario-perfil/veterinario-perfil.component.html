@@ -9,7 +9,7 @@
           <p><span>Atenciones - </span>{{veterinario.numAtenciones}}</p>
         </div>
         <div class="botonesVET">
-            <button (click)="mostrarTabla('mascotas')" class="botonToggle">Mascotas sin tratamiento<img src="assets/img/perroEnfermo.png" class="iconoBoton" alt="MASCOTAS"></button>
+            <button (click)="mostrarTabla('mascotas')" class="botonToggle">Mascotas en espera<img src="assets/img/perroEnfermo.png" class="iconoBoton" alt="MASCOTAS"></button>
             <button (click)="mostrarTabla('tratamientos')" class="botonToggle">Tratamientos activos<img src="assets/img/perroTratamiento.png" alt="TRATAMIENTO"></button>
         </div>
         <!-- Botones para alternar entre Mascotas y Tratamientos -->
@@ -27,7 +27,7 @@
           <tr>
             <th>Nombre</th>
             <th>Raza</th>
-            <th>enfermedad</th>
+            <th>Enfermedad</th>
             <th>Acciones</th>
           </tr>
         </thead>
@@ -67,7 +67,7 @@
             <td>{{mascota.estado}}</td>
             <td class="botones">
               <a routerLink="/mascota/detail/{{mascota.id}}"><button class="botonDetalles">Ver Detalles</button></a>
-              <a (click)="finalizarTratamiento(tratamiento)"><button class="botonDetalles">Finalizar Tratamiento</button></a>
+              <a (click)="finalizarTratamiento(mascota)"><button class="botonDetalles">Finalizar Tratamiento</button></a>
             </td>
           </tr>
         </tbody>

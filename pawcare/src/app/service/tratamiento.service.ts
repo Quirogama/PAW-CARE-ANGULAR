@@ -29,4 +29,8 @@ export class TratamientoService {
   findAll(): Observable<tratamiento[]> {
     return this.http.get<tratamiento[]>('http://localhost:8080/tratamiento/all');
   }
+
+  findByMascota(id: number): Observable<tratamiento> {
+    return this.http.get<tratamiento>('http://localhost:8080/tratamiento/mascota/'+id);
+  }
 }

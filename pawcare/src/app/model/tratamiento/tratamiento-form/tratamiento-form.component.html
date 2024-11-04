@@ -14,11 +14,12 @@
             <option *ngFor="let droga of drogas" [value]="droga.nombre">{{ droga.nombre }}</option>
         </select>
 
+        <p>Mascota tratada:</p>
         <!-- Mostrar el nombre de la mascota seleccionada -->
         <div class="info-mascota" *ngIf="mascotaSeleccionada">
-            <p>ID de la mascota seleccionada: {{ mascotaSeleccionada.id }}</p>
-            <p>Nombre de la mascota seleccionada: {{ mascotaSeleccionada.nombre }}</p>
-            <p>Enfermedad de la mascota seleccionada: {{ mascotaSeleccionada.enfermedad }}</p>
+            <p>Nombre: {{ mascotaSeleccionada.nombre }}</p>
+            <p>Enfermedad: {{ mascotaSeleccionada.enfermedad }}</p>
+            <p>Edad: {{ mascotaSeleccionada.edad }}</p>
         </div>
         
         

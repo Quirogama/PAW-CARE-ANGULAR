@@ -104,10 +104,16 @@ export class VeterinarioPerfilComponent {
     this.tablaActual = tabla;
   }
 
-  finalizarTratamiento(tratamiento: tratamiento) {
-    console.log("ID TRATAMIENTO --> "+tratamiento.id);
-    this.tratamientoService.finalizarTratamiento(tratamiento.id);
-    var index = this.tratamientos.indexOf(tratamiento);
-    this.tratamientos.splice(index, 1);
+  finalizarTratamiento(mascota: mascota) {
+    console.log("Finalizando tratamiento para la mascota:", mascota);
+
+    this.tratamientoService.findByMascota(mascota.id).subscribe((tratamiento) => {
+      this.tratamiento = tratamiento;
+      console.log("Tratamiento finalizado:", tratamiento);
+      this.tratamientoService.finalizarTratamiento(tratamiento.id);
+    })
+
+    var index = this.mascotasEnTratamiento.indexOf(mascota);
+    this.mascotasEnTratamiento.splice(index, 1);
   }
 }

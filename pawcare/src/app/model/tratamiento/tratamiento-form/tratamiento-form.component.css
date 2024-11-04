@@ -66,9 +66,15 @@ select {
 
 button {
    width: 100%;
-   margin-top: 10px;
+   margin-top: 20px;
 }
 
 .info-mascota{
-    width: max-content;
+    width:auto;
+    border-radius: 10px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    font-size: 16px;
+    box-sizing: border-box;
 }
