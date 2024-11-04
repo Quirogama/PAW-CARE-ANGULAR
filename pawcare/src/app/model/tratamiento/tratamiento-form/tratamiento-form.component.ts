@@ -7,6 +7,7 @@ import { droga } from '../../droga/droga';
 import { mascota } from '../../mascota/mascota';
 import { MascotaService } from 'src/app/service/mascota.service';
 import { tratamientoDTO } from './tratamientoDTO';
+import { HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-tratamiento-form',
@@ -86,41 +87,30 @@ export class TratamientoFormComponent {
   }
 
   addTratamiento() {
-    // Crear un objeto simple para enviar al backend
-    const microTratamiento = {
-        id: 0,
-        descripcion: this.formTratamiento.descripcion,
-        fecha: this.formTratamiento.fecha
-    };
-
-    console.log("DESCRIPCION --> " + microTratamiento.descripcion);
-    console.log("FECHA --> " + microTratamiento.fecha);
-    
     this.drogaService.findByNombre(this.formTratamiento.nombredroga).subscribe(
-        (droga) => {
-            this.drogaID = droga.id;
-            const userId = this.getUserIdint();
-            if (userId !== null) {
-                // Enviar el objeto simple al backend
-                this.tratamientoService.agregarTratamiento(userId, this.mascotaSeleccionada.id, this.drogaID, microTratamiento)
-                    .subscribe(
-                        (response) => {
-                            console.log("Tratamiento agregado al backend con éxito", response);
-                            this.router.navigate(['/veterinario/perfil/' + this.getUserId()]);  
-                        },
-                        (error) => {
-                            console.error("Error al agregar el tratamiento", error);
-                        }
-                    );
-            } else {
-                console.error("User ID es nulo, no se puede agregar el tratamiento.");
-            }
-        },
-        (error) => {
-            console.error("Error al buscar la droga", error);
+      (droga) => {
+        this.drogaID = droga.id;
+        const userId = this.getUserIdint();
+        if (userId !== null) {
+            // Construir la URL con parámetros de consulta
+            const params = new HttpParams()
+                .set('descripcion', this.formTratamiento.descripcion)
+                .set('fecha', this.formTratamiento.fecha.toString());
+    
+            this.tratamientoService.agregarTratamiento(userId, this.mascotaSeleccionada.id, this.drogaID, { params })
+                .subscribe(
+                    (response) => {
+                        console.log("Tratamiento agregado al backend con éxito", response);
+                        this.router.navigate(['/veterinario/perfil/' + this.getUserId()]);
+                    },
+                    (error) => {
+                        console.error("Error al agregar el tratamiento", error);
+                    }
+                );
+        } else {
+            console.error("User ID es nulo, no se puede agregar el tratamiento.");
         }
+      }
     );
 }
-
-
 }

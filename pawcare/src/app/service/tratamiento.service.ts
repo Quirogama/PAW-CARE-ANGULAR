@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { tratamiento } from '../model/tratamiento/tratamiento';
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -17,10 +17,10 @@ export class TratamientoService {
     return this.http.post('http://localhost:8080/tratamiento/add',tratamiento);
   }
 
-  //@PostMapping("/tratamiento/agregar/{idVET}/{idMASC}/{idDROGA}")
-  agregarTratamiento(idVET: number, idMASC: number, idDROGA: number, TratamientoDTO: tratamientoDTO): Observable<any> {
-    return this.http.post(`http://localhost:8080/tratamiento/agregar/${idVET}/${idMASC}/${idDROGA}`, TratamientoDTO);
-}
+  //@PostMapping("/tratamiento"/agregar/{idVET}/{idMASC}/{idDROGA}"")
+  agregarTratamiento(idVET: number, idMASC: number, idDROGA: number, params: { params: HttpParams }) {
+    return this.http.post(`http://localhost:8080/tratamiento/agregar/${idVET}/${idMASC}/${idDROGA}`, null, params);
+  }
 
 
   findAll(): Observable<tratamiento[]> {
