@@ -12,7 +12,7 @@
         </ng-container>
         <ng-container *ngSwitchCase="'veterinario'">
           <a [routerLink]="['/veterinario/perfil', getUserId()]">PERFIL</a>
-          <a class="btnlogout" (click)="logout()">LOGOUT</a>
+          <a class="btnlogout" id="btnLogoutHeader" (click)="logout()">LOGOUT</a>
         </ng-container>
         <ng-container *ngSwitchCase="'administrador'">
           <a routerLink="/administrador/dashboard" id="btnPerfilPrincipalHeader">PERFIL PRINCIPAL</a>
@@ -20,7 +20,7 @@
           <a routerLink="/clientes" id="btnClientesHeader">LISTA DE CLIENTES</a>
           <a routerLink="/veterinarios" id="btnVeterinariosHeader">LISTA DE VETERINARIOS</a>
           <a routerLink="/dashboard" id="btnDashboardHeader">DASHBOARD</a>
-          <a class="btnlogout" (click)="logout()">LOGOUT</a>
+          <a class="btnlogout" id="btnLogoutHeader"(click)="logout()">LOGOUT</a>
         </ng-container>
         <ng-container *ngSwitchCase="'noauth'">
           <a routerLink="/home">INICIO</a>
