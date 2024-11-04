@@ -1,5 +1,5 @@
 export interface tratamientoDTO {
-    id: number
+    id : number;
     descripcion: string
     fecha: String
 }

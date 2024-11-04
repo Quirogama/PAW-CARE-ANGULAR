@@ -85,46 +85,42 @@ export class TratamientoFormComponent {
     this.formTratamiento.idmascota = event.id;
   }
 
-  addTratamiento(){
-    this.tratamientoDTO.id = this.tratamientos.length + 1;
-    this.tratamientoDTO.descripcion = this.formTratamiento.descripcion;
-    this.tratamientoDTO.fecha = this.formTratamiento.fecha;
+  addTratamiento() {
+    // Crear un objeto simple para enviar al backend
+    const microTratamiento = {
+        id: 0,
+        descripcion: this.formTratamiento.descripcion,
+        fecha: this.formTratamiento.fecha
+    };
 
-    console.log("DESCRIPCION --> "+this.tratamientoDTO.descripcion);
-
-    console.log(this.formTratamiento);
+    console.log("DESCRIPCION --> " + microTratamiento.descripcion);
+    console.log("FECHA --> " + microTratamiento.fecha);
+    
     this.drogaService.findByNombre(this.formTratamiento.nombredroga).subscribe(
-      (droga) => {
-        this.drogaID = droga.id;
-        const userId = this.getUserIdint();
-        if (userId !== null) {
-          this.tratamientoService.agregarTratamiento(userId, this.mascotaSeleccionada.id, this.drogaID, this.tratamientoDTO)
-            .subscribe(
-              (response) => {
-                console.log("Tratamiento enviado al backend con éxito");
-                console.log("VETERINARIO ID --> ", userId);
-                console.log("MASCOTA ID --> ", this.mascotaSeleccionada.id);
-                console.log("DROGA ID --> ", this.drogaID);
-                console.log("TRATAMIENTO DTO --> ", this.tratamientoDTO);
-              },
-              (error) => {
-                console.error("Error al agregar el tratamiento", error);
-              }
-            );
-        } else {
-          console.error("User ID es nulo, no se puede agregar el tratamiento.");
+        (droga) => {
+            this.drogaID = droga.id;
+            const userId = this.getUserIdint();
+            if (userId !== null) {
+                // Enviar el objeto simple al backend
+                this.tratamientoService.agregarTratamiento(userId, this.mascotaSeleccionada.id, this.drogaID, microTratamiento)
+                    .subscribe(
+                        (response) => {
+                            console.log("Tratamiento agregado al backend con éxito", response);
+                            this.router.navigate(['/veterinario/perfil/' + this.getUserId()]);  
+                        },
+                        (error) => {
+                            console.error("Error al agregar el tratamiento", error);
+                        }
+                    );
+            } else {
+                console.error("User ID es nulo, no se puede agregar el tratamiento.");
+            }
+        },
+        (error) => {
+            console.error("Error al buscar la droga", error);
         }
-      },
-      (error) => {
-        console.error("Error al buscar la droga", error);
-      }
     );
-    
-    
- 
+}
 
-    
-    this.router.navigate(['/veterinario/perfil/' + this.getUserId()]);  
-  }
 
 }

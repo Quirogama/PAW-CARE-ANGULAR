@@ -18,10 +18,10 @@ export class TratamientoService {
   }
 
   //@PostMapping("/tratamiento/agregar/{idVET}/{idMASC}/{idDROGA}")
-  agregarTratamiento(idVET: number, idMASC: number, idDROGA: number, tratamientoDTO: tratamientoDTO) {
-    console.log("\n\nTratamiento ENVIADO al backend --> ",tratamientoDTO+"\n\n");
-    return this.http.post(`http://localhost:8080/tratamiento/agregar/${idVET}/${idMASC}/${idDROGA}`, tratamientoDTO);
-  }
+  agregarTratamiento(idVET: number, idMASC: number, idDROGA: number, TratamientoDTO: tratamientoDTO): Observable<any> {
+    return this.http.post(`http://localhost:8080/tratamiento/agregar/${idVET}/${idMASC}/${idDROGA}`, TratamientoDTO);
+}
+
 
   findAll(): Observable<tratamiento[]> {
     return this.http.get<tratamiento[]>('http://localhost:8080/tratamiento/all');
