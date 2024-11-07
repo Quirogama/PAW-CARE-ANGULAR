@@ -8,12 +8,12 @@
   </div>
   <div class="right-section">
     <h1 class="txtIniciarSesion">Inicio de Sesión</h1>
-    <form (ngSubmit)="iniciarSesion()" #loginForm="ngForm">
+    <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
       <input
         type="text"
         id="cedula"
         name="cedula"
-        [(ngModel)]="cedula"
+        [(ngModel)]="formUser.cedula"
         placeholder="Cédula"
         maxlength="9"
         pattern="\d*"
@@ -24,9 +24,42 @@
         type="text"
         id="clave"
         name="clave"
-        [(ngModel)]="clave"
+        [(ngModel)]="formUser.clave"
         placeholder="Contraseña"
+        required
       />
+
+      <!-- Checkboxes for user roles -->
+      <div>
+        <label>
+          <input
+            type="radio"
+            name="rol"
+            [value]="'cliente'"
+            (change)="selectRole('cliente')"
+          />
+          Cliente
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="rol"
+            [value]="'veterinario'"
+            (change)="selectRole('veterinario')"
+          />
+          Veterinario
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="rol"
+            [value]="'administrador'"
+            (change)="selectRole('administrador')"
+          />
+          Administrador
+        </label>
+      </div>
+
       <button type="submit" id="btnIngresar">Ingresar</button>
     </form>
     <span>

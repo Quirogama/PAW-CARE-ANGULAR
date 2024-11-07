@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -32,6 +32,7 @@ import { VeterinarioPerfilComponent } from './model/veterinario/veterinario-perf
 import { TratamientoFormComponent } from './model/tratamiento/tratamiento-form/tratamiento-form.component';
 import { ClienteRegistroComponent } from './model/cliente/cliente-registro/cliente-registro.component';
 import { TratamientoDetailComponent } from './model/tratamiento/tratamiento-detail/tratamiento-detail.component';
+import { AuthInterceptor } from './helpers/auth.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -69,7 +70,9 @@ import { TratamientoDetailComponent } from './model/tratamiento/tratamiento-deta
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

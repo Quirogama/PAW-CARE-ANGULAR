@@ -38,6 +38,7 @@ const routes: Routes = [
   { path: 'cliente/edit/:id', component: ClienteEditComponent},
   { path: 'cliente/registro', component: ClienteFormComponent},
   { path: 'cliente/crear-cuenta', component: ClienteRegistroComponent},
+  { path: 'cliente/home', component: ClienteDetailComponent},
   //veterinarios
   { path: 'veterinarios', component: VeterinarioTableComponent},
   { path: 'veterinario/edit/:id', component: VeterinarioEditComponent},
@@ -46,6 +47,7 @@ const routes: Routes = [
   { path: 'veterinario/form', component: VeterinarioFormComponent},
   { path: 'tratamiento/form/:id', component: TratamientoFormComponent},
   { path: 'tratamiento/detail/:id', component: TratamientoDetailComponent},
+  { path: 'veterinario/home', component: VeterinarioDetailComponent},
   //administrador
   { path: 'administrador/dashboard', component: AdministradorDashboardComponent},
   //dashboard

@@ -27,26 +27,12 @@ export class ClienteDetailComponent {
               private mascotaService: MascotaService,
               private http: HttpClient
   ) {  
-    this.route.paramMap.subscribe(params => {
-      const id = Number(params.get('id'));
-      this.clienteService.findById(id).pipe(
-        mergeMap(
-          (ClienteInfo) => {
-            this.cliente = ClienteInfo;
-            return this.mascotaService.findClienteMascota(this.cliente.id);
-          }
-        )
-      ).subscribe(
-        (mascotas) => {
-          this.mascotas = mascotas;
-        }
-      )
-    })
   }
 
   //Metodos
 
   ngOnInit(): void {
+    /*
     this.route.paramMap.subscribe(params => {
       
       const id = Number(params.get('id'));
@@ -60,6 +46,32 @@ export class ClienteDetailComponent {
         }
       )
     })
+      */
+    this.clienteService.clienteHome().subscribe(
+      (clienteInfo) => {
+        this.cliente = clienteInfo;
+        console.log("ID del cliente:", this.cliente.id);  // Verificar ID
+    
+        this.mascotaService.findClienteMascota(this.cliente.id).subscribe(
+          (mascotas) => {
+            if (mascotas && mascotas.length > 0) {
+              this.mascotas = mascotas;
+            } else {
+              console.warn("No se encontraron mascotas para este cliente.");
+            }
+          },
+          (error) => {
+            console.error("Error al obtener las mascotas del cliente:", error);
+          }
+        );
+      },
+      (error) => {
+        console.error("Error al obtener la información del cliente:", error);
+      }
+    );
+    
+    
+    
       
   }
 

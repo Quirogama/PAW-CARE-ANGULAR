@@ -1,6 +1,7 @@
 import { Injectable, numberAttribute } from '@angular/core';
 import { cliente } from '../model/cliente/cliente';
 import { mascota } from '../model/mascota/mascota';
+import { user } from '../model/user';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
@@ -41,5 +42,22 @@ export class ClienteService {
     console.log('Datos enviados para actualización:', updatedCliente);
     return this.http.put<cliente>('http://localhost:8080/cliente/modificar/' + updatedCliente.id, updatedCliente);
   }
+
+  login(user: user): Observable<String> {
+    return this.http.post('http://localhost:8080/cliente/login', user,
+      {
+      responseType: 'text'
+      });
+  }
   
+  clienteHome(): Observable<cliente> {
+    return this.http.get<cliente>('http://localhost:8080/cliente/details');
+  }
+
+  loginGeneral(user: user): Observable<String> {
+    return this.http.post('http://localhost:8080/login', user,
+      {
+      responseType: 'text'
+      });
+  }
 }

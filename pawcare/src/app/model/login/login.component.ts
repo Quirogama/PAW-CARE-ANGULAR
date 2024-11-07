@@ -5,6 +5,7 @@ import { AdministradorService } from 'src/app/service/administrador.service';
 import { Router } from '@angular/router';
 import { VeterinarioService } from 'src/app/service/veterinario.service';
 import { AuthService } from 'src/app/service/auth.service'; // Importa el servicio
+import { user } from '../user';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +18,17 @@ export class LoginComponent {
   cedula: number = null!;
   clave: string = '';
 
+  formUser: user = {
+    cedula: 0,
+    clave: ""
+  }
+
+  selectedRole: string | null = null;
+
+  selectRole(role: string) {
+    this.selectedRole = role;
+  }
+
   constructor(
     private clienteService: ClienteService, 
     private veterinarioService: VeterinarioService,
@@ -24,6 +36,54 @@ export class LoginComponent {
     private router: Router,
     private authService: AuthService // Inyecta el servicio
   ) { }
+
+  onSubmit() {
+    if (!this.selectedRole) {
+      alert('Seleccione un rol para continuar.');
+      return;
+    }
+
+    switch (this.selectedRole) {
+      case 'cliente':
+        this.login();
+        break;
+      case 'veterinario':
+        this.loginVET();
+        break;
+      case 'administrador':
+        this.loginADM();
+        break;
+    }
+  }
+
+  login(){
+    console.log(this.formUser);
+    this.clienteService.login(this.formUser).subscribe(
+      (data) => {
+        localStorage.setItem('token', String(data));
+        this.authService.setUserType('cliente'); // Establece el userType
+        localStorage.setItem('userType', 'cliente'); // Almacena en localStorage
+        this.router.navigate(['/cliente/home']);
+      },
+      (error) => {
+        if (error.status === 401) {
+          console.error('Error de autenticación');
+          // Puedes mostrar un mensaje de error al usuario aquí
+        } else {
+          console.error(error);
+        }
+      }
+    )
+  }
+
+  loginVET() {
+    console.log("VET");
+      console.log(this.formUser);
+  }
+
+  loginADM(){
+    console.log("ADM");
+  }
 
   iniciarSesion() {
     if (this.cedula && this.cedula !== 0) {
