@@ -7,7 +7,7 @@
     <nav>
       <ng-container [ngSwitch]="userType">
         <ng-container *ngSwitchCase="'cliente'">
-          <a [routerLink]="['/cliente/detail', getUserId()]">PERFIL</a>
+          <a routerLink="/cliente/home">PERFIL</a>
           <a class="btnlogout" (click)="logout()">LOGOUT</a>
         </ng-container>
         <ng-container *ngSwitchCase="'veterinario'">

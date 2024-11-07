@@ -78,7 +78,23 @@ export class LoginComponent {
 
   loginVET() {
     console.log("VET");
-      console.log(this.formUser);
+    console.log(this.formUser);
+    this.veterinarioService.login(this.formUser).subscribe(
+      (data) => {
+        localStorage.setItem('token', String(data));
+        this.authService.setUserType('veterinario'); // Establece el userType
+        localStorage.setItem('userType', 'veterinario'); // Almacena en localStorage
+        this.router.navigate(['/veterinario/home']);
+      },
+      (error) => {
+        if (error.status === 401) {
+          console.error('Error de autenticación');
+          // Puedes mostrar un mensaje de error al usuario aquí
+        } else {
+          console.error(error);
+        }
+      }
+    )
   }
 
   loginADM(){

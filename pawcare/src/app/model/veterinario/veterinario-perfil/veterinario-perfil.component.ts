@@ -37,6 +37,22 @@ export class VeterinarioPerfilComponent {
               private route: ActivatedRoute,
               private router: Router
   ) { 
+    this.veterinarioService.veterinarioHome().pipe(
+      mergeMap((veterinarioInfo) => {
+        this.veterinario = veterinarioInfo;
+        console.log(this.veterinario);
+        return this.veterinarioService.findVeterinarioTratamientos(this.veterinario.id);
+      })
+    ).subscribe(
+      (tratamientos) => {
+        this.tratamientos = tratamientos;
+      },
+      (error) => {
+        console.error("Error al obtener la lista de tratamientos:", error);
+      }
+    )
+  
+    /*
     this.route.paramMap.subscribe(params => {
       const id = Number(params.get('id'));
       this.veterinarioService.findById(id).pipe(
@@ -66,7 +82,7 @@ export class VeterinarioPerfilComponent {
         }
       });
     });
-
+*/
     
     
     // Obtener y filtrar mascotas

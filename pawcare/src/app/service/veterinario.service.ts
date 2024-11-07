@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { user } from '../model/user';
 import { Observable } from 'rxjs';
 import { veterinario } from '../model/veterinario/veterinario';
 import { tratamiento } from '../model/tratamiento/tratamiento';
@@ -50,4 +51,14 @@ export class VeterinarioService {
     return this.http.get<mascota[]>('http://localhost:8080/veterinario/mascotas/tratamiento/'+id);
   }
   
+  veterinarioHome(): Observable<veterinario> {
+    return this.http.get<veterinario>('http://localhost:8080/veterinario/details');
+  }
+
+  login(user: user): Observable<String> {
+    return this.http.post('http://localhost:8080/cliente/login', user,
+      {
+      responseType: 'text'
+      });
+  }
 }
