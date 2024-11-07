@@ -26,8 +26,7 @@ export class ClienteDetailComponent {
               private router: Router,
               private mascotaService: MascotaService,
               private http: HttpClient
-  ) {  
-  }
+  ) {}
 
   //Metodos
 
@@ -47,30 +46,19 @@ export class ClienteDetailComponent {
       )
     })
       */
-    this.clienteService.clienteHome().subscribe(
-      (clienteInfo) => {
+    this.clienteService.clienteHome().pipe(
+      mergeMap((clienteInfo) => {
         this.cliente = clienteInfo;
-        console.log("ID del cliente:", this.cliente.id);  // Verificar ID
-    
-        this.mascotaService.findClienteMascota(this.cliente.id).subscribe(
-          (mascotas) => {
-            if (mascotas && mascotas.length > 0) {
-              this.mascotas = mascotas;
-            } else {
-              console.warn("No se encontraron mascotas para este cliente.");
-            }
-          },
-          (error) => {
-            console.error("Error al obtener las mascotas del cliente:", error);
-          }
-        );
+        return this.mascotaService.findClienteMascota(this.cliente.id);
+      })
+    ).subscribe(
+      (mascotas) => {
+        this.mascotas = mascotas;
       },
       (error) => {
-        console.error("Error al obtener la información del cliente:", error);
+        console.error("Error al obtener mascotas", error);
       }
     );
-    
-    
     
       
   }
