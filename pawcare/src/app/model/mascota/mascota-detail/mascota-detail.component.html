@@ -11,7 +11,7 @@
                         <p>Edad: {{mascota.edad}}</p>
                         <p>Estado: {{mascota.estado}}</p>
                         <p *ngIf="mascota.estado === 'En tratamiento'" >Droga suministrada: {{droga.nombre}}</p>
-                        <button class="botonHistorial">Historial medico</button>
+                        <button routerLink="/mascota/historial/{{mascota.id}}" class="botonHistorial">Historial medico</button>
                     </div>
                 </div>
               </section>

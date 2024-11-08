@@ -25,7 +25,7 @@
             <th>Acciones</th> 
           </tr>
         </thead>
-        <tbody>
+        <tbody *ngIf="mascotas && mascotas.length > 0; else sinMascotas">
           <tr *ngFor="let mascota of mascotas">
             <td>{{mascota.nombre}}</td>
             <td>{{mascota.peso}}kg</td>
@@ -44,6 +44,13 @@
             </td>
           </tr>
         </tbody>
+
+        <ng-template #sinMascotas>
+          <tr>
+            <td colspan="7" class="text-center">No tienes mascotas</td>
+          </tr>
+        </ng-template>
+        
       </table>
     </div>
   </div>

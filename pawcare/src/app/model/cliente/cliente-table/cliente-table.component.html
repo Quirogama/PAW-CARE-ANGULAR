@@ -14,7 +14,7 @@
             <th>+</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody *ngIf="clienteList && clienteList.length > 0; else sinClientes">
         <tr *ngFor="let cliente of clienteList">
             <ng-container>
                 <td>{{cliente.nombre}}</td>
@@ -29,5 +29,12 @@
             </ng-container>
         </tr>
     </tbody>
+
+    <ng-template #sinClientes>
+        <tr>
+            <td class="sinClientes" colspan="5">No hay clientes registrados</td>
+        </tr>
+    </ng-template>
+
 </table>
 

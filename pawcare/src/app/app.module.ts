@@ -33,6 +33,7 @@ import { TratamientoFormComponent } from './model/tratamiento/tratamiento-form/t
 import { ClienteRegistroComponent } from './model/cliente/cliente-registro/cliente-registro.component';
 import { TratamientoDetailComponent } from './model/tratamiento/tratamiento-detail/tratamiento-detail.component';
 import { AuthInterceptor } from './helpers/auth.interceptor';
+import { MascotaHistorialComponent } from './model/mascota/mascota-historial/mascota-historial.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,7 +63,8 @@ import { AuthInterceptor } from './helpers/auth.interceptor';
     VeterinarioPerfilComponent,
     TratamientoFormComponent,
     ClienteRegistroComponent,
-    TratamientoDetailComponent
+    TratamientoDetailComponent,
+    MascotaHistorialComponent
   ],
   imports: [
     BrowserModule,

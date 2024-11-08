@@ -213,3 +213,9 @@
 .rojo{
     color: #860400;
 }
+
+.text-center {
+  text-align: center;
+  color: #666666;
+  font-size: 15px;
+}

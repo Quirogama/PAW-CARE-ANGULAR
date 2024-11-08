@@ -21,6 +21,7 @@ import { ClienteRegistroComponent } from './model/cliente/cliente-registro/clien
 import { VeterinarioFormComponent } from './model/veterinario/veterinario-form/veterinario-form.component';
 import { TratamientoFormComponent } from './model/tratamiento/tratamiento-form/tratamiento-form.component';
 import { TratamientoDetailComponent } from './model/tratamiento/tratamiento-detail/tratamiento-detail.component';
+import { MascotaHistorialComponent } from './model/mascota/mascota-historial/mascota-historial.component';
 
 
 const routes: Routes = [
@@ -31,6 +32,7 @@ const routes: Routes = [
   { path: 'mascota/form', component: MascotaFormComponent},
   { path: 'mascota/detail/:id', component: MascotaDetailComponent},
   { path: 'mascota/edit/:id', component: MascotaEditComponent},
+  { path: 'mascota/historial/:id', component: MascotaHistorialComponent},
   //clientes
   { path: 'clientes', component: ClienteTableComponent},
   { path: 'cliente/form', component: ClienteFormComponent},

@@ -16,7 +16,7 @@
             <th>Acciones</th> 
         </tr>
     </thead>
-    <tbody>
+    <tbody *ngIf="mascotaList && mascotaList.length > 0; else sinMascotas">
         <tr *ngFor="let mascota of mascotaList">
             <ng-container>
                 <td>{{mascota.nombre}}</td>
@@ -38,5 +38,11 @@
             </ng-container>
         </tr>
     </tbody>
+
+    <ng-template #sinMascotas>
+        <tr>
+            <td class="sinMascotas" colspan="7">No hay mascotas registradas</td>
+        </tr>
+    </ng-template>
 </table>
 

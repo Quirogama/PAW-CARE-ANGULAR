@@ -31,23 +31,30 @@
             <th>Acciones</th>
           </tr>
         </thead>
-        <tbody>
-            <tr *ngFor="let mascota of mascotasEnObservacion">
-              <td>{{mascota.nombre}}</td>
-              <td>{{mascota.raza}}</td>
-              <td>{{mascota.enfermedad}}</td>
-              <td class="botones">
-                <!-- Botón para Registrar Tratamiento -->
-                <a routerLink="/tratamiento/form/{{mascota.id}}">
-                    <button class="botonDetalles" id="btnAsignarTratamiento">Asignar Tratamiento</button>
-                  </a>
-                <!-- Botón para Ver Detalles de la Mascota -->
-                <a routerLink="/mascota/detail/{{mascota.id}}">
-                  <button class="botonDetalles" id="btnVerDetalles">Ver Detalles</button>
-                </a>
-              </td>
-            </tr>
-          </tbody>       
+        <tbody *ngIf="mascotasEnObservacion && mascotasEnObservacion.length > 0; else sinMascotas">
+          <tr *ngFor="let mascota of mascotasEnObservacion">
+            <td>{{mascota.nombre}}</td>
+            <td>{{mascota.raza}}</td>
+            <td>{{mascota.enfermedad}}</td>
+            <td class="botones">
+              <!-- Botón para Registrar Tratamiento -->
+              <a routerLink="/tratamiento/form/{{mascota.id}}">
+                <button class="botonDetalles" id="btnAsignarTratamiento">Asignar Tratamiento</button>
+              </a>
+              <!-- Botón para Ver Detalles de la Mascota -->
+              <a routerLink="/mascota/detail/{{mascota.id}}">
+                <button class="botonDetalles" id="btnVerDetalles">Ver Detalles</button>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+        
+        <ng-template #sinMascotas>
+          <tr>
+            <td colspan="4" class="text-center">No hay mascotas en espera</td>
+          </tr>
+        </ng-template>
+              
       </table>
   
       <!-- Tabla de mascotas en tratamiento -->
@@ -60,7 +67,7 @@
             <th>Acciones</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody *ngIf="mascotasEnTratamiento && mascotasEnTratamiento.length > 0; else sinMascotas">
           <tr *ngFor="let mascota of mascotasEnTratamiento">
             <td>{{mascota.nombre}}</td>
             <td>{{mascota.enfermedad}}</td>
@@ -71,6 +78,13 @@
             </td>
           </tr>
         </tbody>
+
+        <ng-template #sinMascotas>
+          <tr>
+            <td colspan="4" class="text-center">No tienes mascotas en tratamiento</td>
+          </tr>
+        </ng-template>
+
       </table>
     </div>
   </div>
