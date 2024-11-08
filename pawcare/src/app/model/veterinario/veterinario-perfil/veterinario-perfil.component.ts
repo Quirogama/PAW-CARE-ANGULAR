@@ -37,21 +37,7 @@ export class VeterinarioPerfilComponent {
               private route: ActivatedRoute,
               private router: Router
   ) { 
-    this.veterinarioService.veterinarioHome().pipe(
-      mergeMap((veterinarioInfo) => {
-        this.veterinario = veterinarioInfo;
-        console.log(this.veterinario);
-        return this.veterinarioService.findVeterinarioTratamientos(this.veterinario.id);
-      })
-    ).subscribe(
-      (tratamientos) => {
-        this.tratamientos = tratamientos;
-      },
-      (error) => {
-        console.error("Error al obtener la lista de tratamientos:", error);
-      }
-    )
-  
+    
     /*
     this.route.paramMap.subscribe(params => {
       const id = Number(params.get('id'));
@@ -82,32 +68,56 @@ export class VeterinarioPerfilComponent {
         }
       });
     });
-*/
-    
-    
-    // Obtener y filtrar mascotas
-    this.mascotaService.findAll().subscribe((mascotas) => {
+
+     this.mascotaService.findAll().subscribe((mascotas) => {
       this.mascotas = mascotas;
       this.filtrarMascotasEnObservacion();
     });
+*/
+    
+    
+    
+    // Obtener y filtrar mascotas
+   
   }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
-      const id = Number(params.get('id'));
-      this.veterinarioService.findById(id).subscribe({
-        next: (veterinario) => {
-          this.veterinario = veterinario;
-          console.log("Datos del veterinario obtenidos:", veterinario);
-        },
-        error: (error) => {
-          console.error("Error al obtener el veterinario:", error);
-        },
-        complete: () => {
-          console.log("Solicitud de datos del veterinario completada.");
-        }
-      });
-    });
+    this.veterinarioService.veterinarioHome().pipe(
+      mergeMap((veterinarioInfo) => {
+        localStorage.setItem('id', String(veterinarioInfo.id));
+        this.veterinario = veterinarioInfo;
+        return this.mascotaService.findAll();
+      })
+    ).subscribe(
+      (mascotas) => {
+        this.mascotas = mascotas;
+        this.filtrarMascotasEnObservacion();
+        this.veterinarioService.findVeterinarioTratamientos(this.veterinario.id)
+          .subscribe(
+            (tratamientos) => {
+              this.tratamientos = tratamientos;
+            },
+            (error) => {
+              console.error("Error al obtener tratamientos", error);
+            }
+          );
+        this.veterinarioService.findVeterinarioMascotas(this.veterinario.id).subscribe({
+          next: (mascotas) => {
+            this.mascotasEnTratamiento = mascotas;
+            console.log("Lista de mascotas obtenida:", mascotas);
+          },
+          error: (error) => {
+            console.error("Error al obtener la lista de mascotas:", error);
+          },
+          complete: () => {
+            console.log("Solicitud de lista de mascotas completada.");
+          }
+        });
+      },
+      (error) => {
+        console.error("Error al obtener mascotas", error);
+      }
+    );
   }
   
 

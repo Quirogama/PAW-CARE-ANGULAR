@@ -31,21 +31,6 @@ export class ClienteDetailComponent {
   //Metodos
 
   ngOnInit(): void {
-    /*
-    this.route.paramMap.subscribe(params => {
-      
-      const id = Number(params.get('id'));
-      this.clienteService.findById(id).pipe(
-        mergeMap(
-          (ClienteInfo) => this.mascotaService.findClienteMascota(this.cliente.id)
-        )
-      ).subscribe(
-        (mascotas) => {
-          this.cliente.mascotas = mascotas;
-        }
-      )
-    })
-      */
     this.clienteService.clienteHome().pipe(
       mergeMap((clienteInfo) => {
         this.cliente = clienteInfo;
@@ -58,9 +43,7 @@ export class ClienteDetailComponent {
       (error) => {
         console.error("Error al obtener mascotas", error);
       }
-    );
-    
-      
+    );  
   }
 
   

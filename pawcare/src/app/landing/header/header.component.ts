@@ -34,6 +34,7 @@ logout(): void {
   localStorage.removeItem('userType'); // Limpia el localStorage
   localStorage.removeItem('id'); // Limpia el ID
   this.router.navigate(['/login']);
+  localStorage.removeItem('token');
 }
 
 }

@@ -19,7 +19,7 @@ export class LoginComponent {
   clave: string = '';
 
   formUser: user = {
-    cedula: 0,
+    cedula: null!,
     clave: ""
   }
 
@@ -56,6 +56,10 @@ export class LoginComponent {
     }
   }
 
+  loginALL() {
+    
+  }
+
   login(){
     console.log(this.formUser);
     this.clienteService.login(this.formUser).subscribe(
@@ -67,7 +71,6 @@ export class LoginComponent {
       },
       (error) => {
         if (error.status === 401) {
-          console.error('Error de autenticación');
           // Puedes mostrar un mensaje de error al usuario aquí
         } else {
           console.error(error);
@@ -88,7 +91,6 @@ export class LoginComponent {
       },
       (error) => {
         if (error.status === 401) {
-          console.error('Error de autenticación');
           // Puedes mostrar un mensaje de error al usuario aquí
         } else {
           console.error(error);
@@ -99,6 +101,22 @@ export class LoginComponent {
 
   loginADM(){
     console.log("ADM");
+    console.log(this.formUser);
+    this.administradorService.login(this.formUser).subscribe(
+      (data) => {
+        localStorage.setItem('token', String(data));
+        this.authService.setUserType('administrador'); // Establece el userType
+        localStorage.setItem('userType', 'administrador'); // Almacena en localStorage
+        this.router.navigate(['/administrador/dashboard/']);
+      },
+      (error) => {
+        if (error.status === 401) {
+          // Puedes mostrar un mensaje de error al usuario aquí
+        } else {
+          console.error(error);
+        }
+      }
+    )
   }
 
   iniciarSesion() {

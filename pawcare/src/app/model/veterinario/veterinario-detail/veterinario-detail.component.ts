@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { veterinario } from '../veterinario';
 import { VeterinarioService } from 'src/app/service/veterinario.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { mergeMap } from 'rxjs';
 
 @Component({
   selector: 'app-veterinario-detail',
@@ -20,11 +21,10 @@ export class VeterinarioDetailComponent {
   }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
-      const id = Number(params.get('id'));
-      this.veterinarioService.findById(id).subscribe(
-        (veterinario) => this.veterinario = veterinario
-      )
-    })
+    this.veterinarioService.veterinarioHome().subscribe(
+      (data) => {
+        this.veterinario = data
+      }
+    )
   }
 }
