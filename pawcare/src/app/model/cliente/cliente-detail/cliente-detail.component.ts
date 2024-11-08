@@ -46,5 +46,60 @@ export class ClienteDetailComponent {
     );  
   }
 
+  onEstadoChange(event: Event) {
+    const estadoSeleccionado = (event.target as HTMLSelectElement).value;
+    this.clienteService.clienteHome().pipe(
+      mergeMap((clienteInfo) => {
+        this.cliente = clienteInfo;
+        return this.mascotaService.findClienteMascota(this.cliente.id);
+      })
+    ).subscribe(
+      (mascotas) => {
+        this.mascotas = mascotas;
+        if (estadoSeleccionado === "Todos") {
+          this.todas(); // Método que carga todas las mascotas sin filtro
+        } else if (estadoSeleccionado === "Recuperado") {
+          this.filtrarMascotasREC();
+        } else if (estadoSeleccionado === "En observación") {
+          this.filtrarMascotasOBS();
+        } else if (estadoSeleccionado === "En tratamiento") {
+          this.filtrarMascotasTRAT();
+        }
+      },
+      (error) => {
+        console.error("Error al obtener mascotas", error);
+      }
+    );
+  }
+
+  todas() {
+    this.clienteService.clienteHome().pipe(
+      mergeMap((clienteInfo) => {
+        this.cliente = clienteInfo;
+        return this.mascotaService.findClienteMascota(this.cliente.id);
+      })
+    ).subscribe(
+      (mascotas) => {
+        this.mascotas = mascotas;
+      },
+      (error) => {
+        console.error("Error al obtener mascotas", error);
+      }
+    );
+  }
+
+  filtrarMascotasOBS() {
+    this.mascotas = this.mascotas.filter(mascota => mascota.estado === "En observación");
+  }
+
+  filtrarMascotasREC() {
+    this.mascotas = this.mascotas.filter(mascota => mascota.estado === "Recuperado");
+  }
+
+  filtrarMascotasTRAT() {
+    this.mascotas = this.mascotas.filter(mascota => mascota.estado === "En tratamiento");
+  }
+
+
   
 }

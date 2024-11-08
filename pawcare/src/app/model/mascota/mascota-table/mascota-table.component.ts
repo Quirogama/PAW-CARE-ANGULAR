@@ -25,6 +25,44 @@ export class MascotaTableComponent {
     );
   }
 
+  onEstadoChange(event: Event) {
+    const estadoSeleccionado = (event.target as HTMLSelectElement).value;
+    this.mascotaService.findAll().subscribe(
+      (mascotas) => {
+        this.mascotaList = mascotas;
+        if (estadoSeleccionado === "Todos") {
+          this.todas(); // Método que carga todas las mascotas sin filtro
+        } else if (estadoSeleccionado === "Recuperado") {
+          this.filtrarMascotasREC();
+        } else if (estadoSeleccionado === "En observación") {
+          this.filtrarMascotasOBS();
+        } else if (estadoSeleccionado === "En tratamiento") {
+          this.filtrarMascotasTRAT();
+        }
+      }
+    );
+  }
+
+  todas() {
+    this.mascotaService.findAll().subscribe(
+      (mascotas) => {
+        this.mascotaList = mascotas;
+      }
+    );
+  }
+
+  filtrarMascotasOBS() {
+    this.mascotaList = this.mascotaList.filter(mascota => mascota.estado === "En observación");
+  }
+
+  filtrarMascotasREC() {
+    this.mascotaList = this.mascotaList.filter(mascota => mascota.estado === "Recuperado");
+  }
+
+  filtrarMascotasTRAT() {
+    this.mascotaList = this.mascotaList.filter(mascota => mascota.estado === "En tratamiento");
+  }
+
   mostrarMascota(mascota: mascota) {
     this.selectedMascota = mascota;
   }

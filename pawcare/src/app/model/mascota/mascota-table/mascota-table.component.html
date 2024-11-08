@@ -11,7 +11,14 @@
             <th>Peso</th>
             <th>Raza</th>
             <th>Enfermedad</th>
-            <th>Estado</th>
+            <th><select name="estado" class="selectEstado" (change)="onEstadoChange($event)">
+                <option value="" selected hidden>Estado</option>
+                <option value="Todos">Todas</option>
+                <option value="Recuperado">Recuperado</option>
+                <option value="En observación">En observación</option>
+                <option value="En tratamiento">En tratamiento</option>
+                </select>
+            </th>
             <th>Edad</th>
             <th>Acciones</th> 
         </tr>

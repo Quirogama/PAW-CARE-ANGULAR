@@ -72,6 +72,7 @@ export class LoginComponent {
       (error) => {
         if (error.status === 401) {
           // Puedes mostrar un mensaje de error al usuario aquí
+          alert('Credenciales incorrectas');
         } else {
           console.error(error);
         }
