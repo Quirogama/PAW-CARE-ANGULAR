@@ -5,6 +5,9 @@ import { mascota } from '../mascota/mascota';
 import * as echarts from 'echarts';  // Importa ECharts
 import { DrogaService } from 'src/app/service/droga.service';
 import { droga } from '../droga/droga';
+import { VeterinarioService } from 'src/app/service/veterinario.service';
+import { veterinario } from '../veterinario/veterinario';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-dashboard',          
@@ -12,7 +15,6 @@ import { droga } from '../droga/droga';
   styleUrls: ['./dashboard.component.css']   
 })
 export class DashboardComponent implements OnInit {
-
   // Propiedades para los KPIs
   totalTratamientosMes!: number;
   totalVeterinariosActivos!: number;
@@ -22,11 +24,15 @@ export class DashboardComponent implements OnInit {
   totalMascotasRecuperadas!: number;	
   totalMascotasEnObservacion!: number;
   ventasTotales!: number;
-  gananciasTotales!: number;
+  gananciasTotales: number = 0;  
+
 
   mascotaList: mascota[] = [];
   drogaList: droga[] = [];
+  veterinarioList: veterinario[] = [];
   top5Drogas: any[] = [];
+  Top5DrogasxIngresos: any[] = [];
+  top5Veterinarios: any[] = [];
 
   // Datos para la tabla de tratamientos por medicamento
   tratamientosPorMedicamento = [
@@ -45,7 +51,9 @@ export class DashboardComponent implements OnInit {
   // Inyectamos el servicio en el constructor
   constructor(private dashboardService: DashboardService,
               private mascotaService: MascotaService,
-              private drogaService: DrogaService
+              private drogaService: DrogaService,
+              private veterinarioService: VeterinarioService,
+              private currencyPipe: CurrencyPipe
   ) { }
 
   ngOnInit(): void {
@@ -73,15 +81,23 @@ export class DashboardComponent implements OnInit {
     // Llamar al servicio para obtener las ganancias totales
     this.dashboardService.getTotalGanancias().subscribe(
       (data) => {
-        this.gananciasTotales = data; 
+        console.log(data);  // Verifica que 'data' es el valor esperado
+        this.gananciasTotales = data;
+      },
+      (error) => {
+        console.error('Error al obtener ganancias:', error);
+      }
+    );
+
+    this.veterinarioService.findAll().subscribe(
+      (data) => {
+        this.totalVeterinariosActivos = data.length;
       }
     );
 
     // Valores simulados para otros KPIs
-    this.totalVeterinariosActivos = 10;
     this.totalVeterinariosInactivos = 3;
 
-    // Obtener las mascotas y calcular las estadísticas
     this.mascotaService.findAll().subscribe(
       (mascotas) => {
         this.mascotaList = mascotas;
@@ -100,8 +116,16 @@ export class DashboardComponent implements OnInit {
         this.pieDrogasVendidas();
       }
     );
+
+    this.veterinarioService.findAll().subscribe(
+      (veterinarios) => {
+        this.veterinarioList = veterinarios;
+        this.obtenerTop5Veterinarios();
+        this.pieVeterinarios();
+      });
   }
 
+  // Funciones para obtener los tops
   obtenerTop5Drogas() {
     // Ordenar las drogas por la cantidad vendida en orden descendente
     this.drogaList.sort((a, b) => b.unidadesVendidas - a.unidadesVendidas);
@@ -113,7 +137,69 @@ export class DashboardComponent implements OnInit {
     }));
   }
 
+  obtenerTop5Veterinarios() {
+    // Ordenar los veterinarios por la cantidad de tratamientos realizados en orden descendente
+    this.veterinarioList.sort((a, b) => b.numAtenciones - a.numAtenciones);
+    
+    // Tomar las 5 primeras
+    this.top5Veterinarios = this.veterinarioList.map(veterinario => ({
+      nombre: veterinario.nombre,
+      cantidadTratamientos: veterinario.numAtenciones
+    }));
+  }
 
+  // Funciones para generar los gráficos
+  pieVeterinarios() {
+    const chartDom = document.getElementById('pieTopVeterinarios')!;
+    const myChart = echarts.init(chartDom);
+    console.log(this.top5Veterinarios);
+    const option = {
+      title: {
+        text: 'Top 5 Veterinarios por Consultas',
+        left: 'center',
+        textStyle: {
+          color: '#333',
+          fontSize: 18,
+          fontWeight: 'bold'
+        }
+      },
+      tooltip: {
+        trigger: 'item',
+        formatter: '{a} <br/>{b}: {c} ({d}%)',
+      //  backgroundColor: 'rgba(0,0,0,0.7)',
+      //  textStyle: {
+      //    color: '#fff'
+      //  }
+      },
+      series: [
+        {
+          name: 'Consultas',
+          type: 'pie',
+          radius: ['40%', '70%'],
+          roseType: 'radius',
+          data: [
+            { value: this.top5Veterinarios[0].cantidadTratamientos, name: this.top5Veterinarios[0].nombre },
+            { value: this.top5Veterinarios[1].cantidadTratamientos, name: this.top5Veterinarios[1].nombre },
+            { value: this.top5Veterinarios[2].cantidadTratamientos, name: this.top5Veterinarios[2].nombre },
+            { value: this.top5Veterinarios[3].cantidadTratamientos, name: this.top5Veterinarios[3].nombre },
+            { value: this.top5Veterinarios[4].cantidadTratamientos, name: this.top5Veterinarios[4].nombre }
+
+          ],
+          color: ['#4CAF50', '#2196F3', '#FF9800', '#9C27B0', '#E91E63'],
+          emphasis: {
+            itemStyle: {
+              shadowBlur: 10,
+              shadowOffsetX: 0,
+              shadowColor: 'rgba(0, 0, 0, 0.5)'
+            }
+          }
+        }
+      ]
+    };
+  
+    myChart.setOption(option);
+  }
+  
   pieDrogasVendidas(){
     const chartDom = document.getElementById('pieDrogas')!;
     const myChart = echarts.init(chartDom);
@@ -130,17 +216,16 @@ export class DashboardComponent implements OnInit {
       },
       tooltip: {
         trigger: 'item',
-        formatter: '{a} <br/>{b}: {c} ({d}%)',
-        backgroundColor: 'rgba(0,0,0,0.7)',
-        textStyle: {
-          color: '#fff'
-        }
+        formatter: '{a} <br/>{b}: {c} ({d}%)'
       },
       series: [
         {
           name: 'Droga:',
           type: 'pie',
-          radius: '50%',
+          radius: ['40%', '70%'],
+          roseType: 'radius',
+          bottom: '0%',
+          top: '10%',
           data: this.top5Drogas.map(droga => ({
             value: droga.cantidadVendida,
             name: droga.nombre
@@ -150,7 +235,7 @@ export class DashboardComponent implements OnInit {
             itemStyle: {
               shadowBlur: 10,
               shadowOffsetX: 0,
-              shadowColor: 'rgba(0, 0, 0, 0.5)'
+              shadowColor: 'rgba(0, 0, 0, 0.5)',
             }
           }
         }
@@ -160,7 +245,6 @@ export class DashboardComponent implements OnInit {
     myChart.setOption(option);
   }
 
-  // Función para hacer el gráfico de pastel de mascotas
   pieEstadoMascotas() {
     const chartDom = document.getElementById('pieChart')!;
     const myChart = echarts.init(chartDom);

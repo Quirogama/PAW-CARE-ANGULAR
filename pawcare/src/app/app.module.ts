@@ -35,6 +35,7 @@ import { TratamientoDetailComponent } from './model/tratamiento/tratamiento-deta
 import { AuthInterceptor } from './helpers/auth.interceptor';
 import { MascotaHistorialComponent } from './model/mascota/mascota-historial/mascota-historial.component';
 import { NgxEchartsModule } from 'ngx-echarts';
+import { CurrencyPipe } from '@angular/common';
 @NgModule({
   declarations: [
     AppComponent,
@@ -74,8 +75,10 @@ import { NgxEchartsModule } from 'ngx-echarts';
     HttpClientModule,
     NgxEchartsModule
   ],
-  providers: [{
-    provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true
+  providers: [
+  CurrencyPipe,
+  {
+    provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true,
   }],
   bootstrap: [AppComponent]
 })
