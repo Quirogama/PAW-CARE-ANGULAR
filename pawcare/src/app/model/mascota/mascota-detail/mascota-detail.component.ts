@@ -19,9 +19,10 @@ export class MascotaDetailComponent {
   droga: droga = {
     id: 0,
     nombre: '',
-    correo: '',
-    cedula: 0,
-    celular: 0
+    precioCompra: 0,
+    precioVenta: 0,
+    unidadesDisp: 0,
+    unidadesVendidas: 0
   };
 
   constructor(private mascotaService: MascotaService,

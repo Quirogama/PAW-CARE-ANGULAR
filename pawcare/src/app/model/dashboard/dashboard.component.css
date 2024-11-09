@@ -62,3 +62,27 @@ hr {
     margin-bottom: 10px;
     text-align: center;
 }
+
+.pie-container {
+    display: flex;
+    justify-content: center;
+}
+
+/* Estilo para el contenedor del gráfico */
+#pieChart {
+    width:33%;  
+    height: 400px; /* El gráfico tendrá una altura de 400px */
+    color: #ef7fe9;
+}
+
+#pieDrogas {
+    width: 33%;  
+    height: 400px; /* El gráfico tendrá una altura de 400px */
+    /*
+    border: 1px solid #ccc; /* Agregar un borde gris alrededor del gráfico 
+    border-radius: 8px; /* Bordes redondeados para el contenedor 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave alrededor del gráfico 
+    background-color: #f9f9f9; /* Fondo gris claro 
+    */
+  }
+  

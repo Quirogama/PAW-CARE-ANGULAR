@@ -1,7 +1,8 @@
 export interface droga {
         id: number;
         nombre: string;
-        correo: string;
-        cedula: number;
-        celular: number;
+        precioCompra: number;
+        precioVenta: number;
+        unidadesDisp: number;
+        unidadesVendidas: number;
     }

@@ -42,42 +42,36 @@ export class LoginComponent {
       alert('Seleccione un rol para continuar.');
       return;
     }
-
-    switch (this.selectedRole) {
-      case 'cliente':
-        this.login();
-        break;
-      case 'veterinario':
-        this.loginVET();
-        break;
-      case 'administrador':
-        this.loginADM();
-        break;
+    if (this.selectedRole === "cliente") {
+      this.login();
+    } else if (this.selectedRole === "veterinario") {
+      this.loginVET();
+    } else if (this.selectedRole === "administrador") {
+      this.loginADM();
     }
   }
 
-  loginALL() {
-    
-  }
-
-  login(){
+  login() {
     console.log(this.formUser);
     this.clienteService.login(this.formUser).subscribe(
       (data) => {
         localStorage.setItem('token', String(data));
-        this.authService.setUserType('cliente'); // Establece el userType
-        localStorage.setItem('userType', 'cliente'); // Almacena en localStorage
+        this.authService.setUserType('cliente');
+        localStorage.setItem('userType', 'cliente');
         this.router.navigate(['/cliente/home']);
       },
       (error) => {
         if (error.status === 401) {
-          // Puedes mostrar un mensaje de error al usuario aquí
-          alert('Credenciales incorrectas');
+          alert('Cedula o contraseña incorrectas');
+          console.error('Error de autenticación');
+        } else if (error.status === 400) {
+          alert('Cedula o contraseña incorrectas');
+          console.error('Error de autenticación');
         } else {
           console.error(error);
         }
       }
-    )
+    );
   }
 
   loginVET() {
@@ -86,90 +80,45 @@ export class LoginComponent {
     this.veterinarioService.login(this.formUser).subscribe(
       (data) => {
         localStorage.setItem('token', String(data));
-        this.authService.setUserType('veterinario'); // Establece el userType
-        localStorage.setItem('userType', 'veterinario'); // Almacena en localStorage
+        this.authService.setUserType('veterinario');
+        localStorage.setItem('userType', 'veterinario');
         this.router.navigate(['/veterinario/home']);
       },
       (error) => {
         if (error.status === 401) {
-          // Puedes mostrar un mensaje de error al usuario aquí
+          alert('Cedula o contraseña incorrectas');
+          console.error('Error de autenticación');
+        } else if (error.status === 400) {
+          alert('Cedula o contraseña incorrectas');
+          console.error('Error de autenticación');
         } else {
           console.error(error);
         }
       }
-    )
+    );
   }
 
-  loginADM(){
+  loginADM() {
     console.log("ADM");
     console.log(this.formUser);
     this.administradorService.login(this.formUser).subscribe(
       (data) => {
         localStorage.setItem('token', String(data));
-        this.authService.setUserType('administrador'); // Establece el userType
-        localStorage.setItem('userType', 'administrador'); // Almacena en localStorage
+        this.authService.setUserType('administrador');
+        localStorage.setItem('userType', 'administrador');
         this.router.navigate(['/administrador/dashboard/']);
       },
       (error) => {
         if (error.status === 401) {
-          // Puedes mostrar un mensaje de error al usuario aquí
+          alert('Cedula o contraseña incorrectas');
+          console.error('Error de autenticación');
+        } else if (error.status === 400) {
+          alert('Cedula o contraseña incorrectas');
+          console.error('Error de autenticación');
         } else {
           console.error(error);
         }
       }
-    )
+    );
   }
-
-  iniciarSesion() {
-    if (this.cedula && this.cedula !== 0) {
-        this.clienteService.findByCedula(this.cedula).subscribe(
-            (clienteEncontrado) => {
-                if (clienteEncontrado && clienteEncontrado.clave === this.clave) {
-                    this.authService.setUserType('cliente'); // Establece el userType
-                    localStorage.setItem('userType', 'cliente'); // Almacena en localStorage
-                    localStorage.setItem('id', clienteEncontrado.id.toString());
-                    this.router.navigate(['/cliente/detail/' + clienteEncontrado.id]);
-                } else {
-                    this.administradorService.findByCedula(this.cedula).subscribe(
-                        (administradorEncontrado) => {
-                            if (administradorEncontrado && administradorEncontrado.clave === this.clave) {
-                                this.authService.setUserType('administrador'); // Establece el userType
-                                localStorage.setItem('userType', 'administrador'); // Almacena en localStorage
-                                localStorage.setItem('id', administradorEncontrado.id.toString());
-                                this.router.navigate(['/administrador/dashboard/']);
-                            } else {
-                                this.veterinarioService.findByCedula(this.cedula).subscribe(
-                                    (veterinarioEncontrado) => {
-                                        if (veterinarioEncontrado && veterinarioEncontrado.clave === this.clave) {
-                                            this.authService.setUserType('veterinario'); // Establece el userType
-                                            localStorage.setItem('userType', 'veterinario'); // Almacena en localStorage
-                                            localStorage.setItem('id', veterinarioEncontrado.id.toString());
-                                            this.router.navigate(['/veterinario/perfil/' + veterinarioEncontrado.id]);
-                                        } else {
-                                            alert('Cédula o clave incorrecta. Intente de nuevo.');
-                                        }
-                                    },
-                                    (error) => {
-                                        console.error('Error al buscar el veterinario por cédula:', error);
-                                    }
-                                );
-                            }
-                        },
-                        (error) => {
-                            console.error('Error al buscar el administrador por cédula:', error);
-                        }
-                    );
-                }
-            },
-            (error) => {
-                console.error('Error al buscar el cliente por cédula:', error);
-            }
-        );
-    } else {
-        alert('Por favor, ingrese una cédula válida.');
-    }
-}
-
-  
-
 }

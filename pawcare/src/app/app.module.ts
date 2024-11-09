@@ -34,6 +34,7 @@ import { ClienteRegistroComponent } from './model/cliente/cliente-registro/clien
 import { TratamientoDetailComponent } from './model/tratamiento/tratamiento-detail/tratamiento-detail.component';
 import { AuthInterceptor } from './helpers/auth.interceptor';
 import { MascotaHistorialComponent } from './model/mascota/mascota-historial/mascota-historial.component';
+import { NgxEchartsModule } from 'ngx-echarts';
 @NgModule({
   declarations: [
     AppComponent,
@@ -70,7 +71,8 @@ import { MascotaHistorialComponent } from './model/mascota/mascota-historial/mas
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxEchartsModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true

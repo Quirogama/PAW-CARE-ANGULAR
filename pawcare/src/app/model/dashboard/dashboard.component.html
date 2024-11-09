@@ -1,8 +1,13 @@
 <main class="content">
     <div class="info">
-    <h1 style="text-align: center;">Dashboard de Administrador</h1>
-    <p style="text-align: center;">Este dashboard muestra las métricas clave del sistema.</p>
+    <h1 style="text-align: center;">Dashboard</h1>
+    <p style="text-align: center;">Metricas generales del sistema.</p>
     <hr>
+    </div>
+    <div class="pie-container">
+        <div id="pieChart"></div>
+        <div id="pieDrogas"></div>
+        
     </div>
 
     <!-- 1. Cantidad total de tratamiento administrados en el último mes -->
@@ -59,6 +64,8 @@
     <p>{{ totalMascotasActivas }}</p>
     </div>
     <hr>
+    <div id="pieChart" style="width: 100%; height: 400px;"></div>
+
 
     <!-- 7. Ventas totales de la veterinaria -->
     <h2 style="text-align: center;">Ventas totales de la veterinaria</h2>
@@ -84,4 +91,5 @@
     </ol>
     <hr>
     </div>
+
 </main>

@@ -56,7 +56,7 @@ export class VeterinarioService {
   }
 
   login(user: user): Observable<String> {
-    return this.http.post('http://localhost:8080/cliente/login', user,
+    return this.http.post('http://localhost:8080/veterinario/login', user,
       {
       responseType: 'text'
       });

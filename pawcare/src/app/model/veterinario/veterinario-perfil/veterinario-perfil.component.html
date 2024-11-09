@@ -18,7 +18,7 @@
   
     <div class="tabla-container">
       <!--<button><a routerLink="/tratamiento/form">Registrar Tratamiento</a></button>-->        
-      <h2 *ngIf="tablaActual === 'mascotas'">MASCOTAS EN OBSERVACIÓN</h2>
+      <h2 *ngIf="tablaActual === 'mascotas'">MASCOTAS EN ESPERA</h2>
       <h2 *ngIf="tablaActual === 'tratamientos'">MASCOTAS EN TRATAMIENTO</h2>
   
       <!-- Tabla de Mascotas en Observación -->
@@ -37,13 +37,13 @@
             <td>{{mascota.raza}}</td>
             <td>{{mascota.enfermedad}}</td>
             <td class="botones">
-              <!-- Botón para Registrar Tratamiento -->
-              <a routerLink="/tratamiento/form/{{mascota.id}}">
-                <button class="botonDetalles" id="btnAsignarTratamiento">Asignar Tratamiento</button>
-              </a>
               <!-- Botón para Ver Detalles de la Mascota -->
               <a routerLink="/mascota/detail/{{mascota.id}}">
                 <button class="botonDetalles" id="btnVerDetalles">Ver Detalles</button>
+              </a>
+              <!-- Botón para Registrar Tratamiento -->
+              <a routerLink="/tratamiento/form/{{mascota.id}}">
+                <button class="botonDetalles" id="btnAsignarTratamiento">Asignar Tratamiento</button>
               </a>
             </td>
           </tr>
