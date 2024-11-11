@@ -8,6 +8,8 @@ import { droga } from '../droga/droga';
 import { VeterinarioService } from 'src/app/service/veterinario.service';
 import { veterinario } from '../veterinario/veterinario';
 import { CurrencyPipe } from '@angular/common';
+import { ClienteService } from 'src/app/service/cliente.service';
+import { TratamientoService } from 'src/app/service/tratamiento.service';
 
 @Component({
   selector: 'app-dashboard',          
@@ -17,15 +19,20 @@ import { CurrencyPipe } from '@angular/common';
 export class DashboardComponent implements OnInit {
   // Propiedades para los KPIs
   totalTratamientosMes!: number;
-  totalVeterinariosActivos!: number;
+  totalVeterinariosActivos: number = 0;
   totalVeterinariosInactivos!: number;
+  aumentoVet: number = 0;
+  dismVet: number = 0;
   totalMascotas!: number;
   totalMascotasActivas!: number;
   totalMascotasRecuperadas!: number;	
   totalMascotasEnObservacion!: number;
+  totalUsuarios: number = 0;
+  aumentoCli: number = 0;
+  dismCli: number = 0;
   ventasTotales!: number;
   gananciasTotales: number = 0;  
-
+  tratamientos: number = 0;
 
   mascotaList: mascota[] = [];
   drogaList: droga[] = [];
@@ -53,6 +60,8 @@ export class DashboardComponent implements OnInit {
               private mascotaService: MascotaService,
               private drogaService: DrogaService,
               private veterinarioService: VeterinarioService,
+              private clienteService: ClienteService,
+              private tratamientoService: TratamientoService,
               private currencyPipe: CurrencyPipe
   ) { }
 
@@ -89,9 +98,37 @@ export class DashboardComponent implements OnInit {
       }
     );
 
+    this.tratamientoService.findAll().subscribe(
+      (data) => {
+        this.tratamientos = data.length;
+      }
+    );
+
     this.veterinarioService.findAll().subscribe(
       (data) => {
         this.totalVeterinariosActivos = data.length;
+        if (data.length > 20) {
+         this.aumentoVet = data.length - 20;
+        }else if (data.length < 20) {
+          this.dismVet = data.length - 20;
+          this.aumentoVet = 20 - data.length;
+        }else if (data.length === 20){
+          this.aumentoVet = 0;
+        }
+      }
+    );
+
+    this.clienteService.findAll().subscribe(
+      (data) => {
+        this.totalUsuarios = data.length;
+        if (data.length > 50) {
+          this.aumentoCli = data.length - 50;
+        }else if (data.length < 50) {
+          this.dismCli = data.length - 50;
+          this.aumentoCli = 50 - data.length;
+        }else if (data.length === 50){
+          this.aumentoCli = 0;
+        }
       }
     );
 
@@ -157,6 +194,7 @@ export class DashboardComponent implements OnInit {
       title: {
         text: 'Top 5 Veterinarios por Consultas',
         left: 'center',
+        top: '5%',
         textStyle: {
           color: '#333',
           fontSize: 18,
@@ -175,7 +213,7 @@ export class DashboardComponent implements OnInit {
         {
           name: 'Consultas',
           type: 'pie',
-          radius: ['40%', '70%'],
+          radius: ['35%', '70%'],
           roseType: 'radius',
           data: [
             { value: this.top5Veterinarios[0].cantidadTratamientos, name: this.top5Veterinarios[0].nombre },
@@ -185,7 +223,7 @@ export class DashboardComponent implements OnInit {
             { value: this.top5Veterinarios[4].cantidadTratamientos, name: this.top5Veterinarios[4].nombre }
 
           ],
-          color: ['#4CAF50', '#2196F3', '#FF9800', '#9C27B0', '#E91E63'],
+          color: ['#005143', '#006d62', '#00877a', '#00ad9c', '#59e0d2'],
           emphasis: {
             itemStyle: {
               shadowBlur: 10,
@@ -208,6 +246,7 @@ export class DashboardComponent implements OnInit {
       title: {
         text: 'Top 5 Drogas Más Vendidas',
         left: 'center',
+        top: '5%',
         textStyle: {
           color: '#333',
           fontSize: 18,
@@ -230,7 +269,7 @@ export class DashboardComponent implements OnInit {
             value: droga.cantidadVendida,
             name: droga.nombre
           })),
-          color: ['#ef7f7f', '#efe47f', '#99ef7f', '#7fefe2', '#ef7fe9'],
+          color: ['#761815', '#991f1d', '#d52c27', '#d65f5b', '#f3c4c2'],
           emphasis: {
             itemStyle: {
               shadowBlur: 10,
@@ -253,7 +292,7 @@ export class DashboardComponent implements OnInit {
       title: {
         text: 'Mascotas en el sistema',
         left: 'center',
-        top: 'top'
+        top: '5%'
       },
       tooltip: {
         trigger: 'item',
@@ -269,6 +308,7 @@ export class DashboardComponent implements OnInit {
             { value: this.totalMascotasRecuperadas, name: 'Recuperadas' },
             { value: this.totalMascotasEnObservacion, name: 'En observación' }
           ],
+          color: ['hsl(36, 100%, 65%)', '#008a7c', '#d52c27'],
           emphasis: {
             itemStyle: {
               shadowBlur: 10,

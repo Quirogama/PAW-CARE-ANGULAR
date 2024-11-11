@@ -4,7 +4,7 @@ h1 {
 
 .info {
   text-align: center;
-  width: 31.25%;
+  width: 400px;
 /*  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); */
   margin: 1%;
   
@@ -36,6 +36,7 @@ h1 {
   padding-right: 1%;
   height: 150px;
   text-align: center;
+  width: 15%;  
 }
 
 .small-table {
@@ -101,7 +102,7 @@ hr {
   border-radius: 8px; /* Bordes redondeados para el contenedor */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
   margin: 1%;
-  color: #ef7fe9;
+  color: #008a7c
 }
 
 #pieDrogas {
@@ -128,4 +129,24 @@ hr {
 #barDrogas {
   width: 100%;
   height: 400px;
+}
+
+.rojo {
+  color: #860400;
+  font-weight: thin;
+}
+
+.negro {
+  color: #000000;
+  font-weight: thin;
+}
+
+.gris {
+  color: #808080;
+  font-weight: thin;
+}
+
+.verde {
+  color: #00ad9c;
+  font-weight: thin;
 }

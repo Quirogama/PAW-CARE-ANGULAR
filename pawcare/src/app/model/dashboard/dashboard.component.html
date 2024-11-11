@@ -8,21 +8,30 @@
         <div class="kpi-card-blanca" id="kpi-card-1">
             <p>Ganancias</p>
             <h2>{{ gananciasTotales | currency}}</h2>
+            <p><span class="verde">COP</span></p>
         </div>
 
         <div class="kpi-card-blanca">
             <p>Tratamientos Activos</p>
-            <h2> totalTratamientos </h2>
+            <h2> {{tratamientos}} </h2>
         </div>
 
         <div class="kpi-card-blanca">
             <p>Usuarios Activos</p>
-            <h2>{{ totalMascotas }}</h2>
+            <h2 *ngIf="totalUsuarios != 0" >{{ totalUsuarios }}</h2>
+            <h2 *ngIf="totalUsuarios === 0" >...</h2>
+            <p *ngIf="aumentoCli > 0 && dismCli === 0"><span class="verde">&#9206;{{aumentoCli}}</span></p>
+            <p *ngIf="dismCli < 0"><span class="rojo">&#9207;{{aumentoCli}}</span></p>
+            <p *ngIf="aumentoCli === 0"><span class="gris">&#11139;0</span></p>
         </div>
 
         <div class="kpi-card-blanca">
-            <p>veterinarios activos</p>
-            <h2>{{ totalVeterinariosActivos }}</h2>
+            <p>Veterinarios Activos</p>
+            <h2 *ngIf="totalVeterinariosActivos != 0">{{ totalVeterinariosActivos }}</h2>
+            <h2 *ngIf="totalVeterinariosActivos === 0">...</h2> 
+            <p *ngIf="aumentoVet > 0 && dismVet === 0"><span class="verde">&#9206;{{aumentoVet}}</span></p>
+            <p *ngIf="dismVet < 0"><span class="rojo">&#9207;{{aumentoVet}}</span></p>
+            <p *ngIf="aumentoVet === 0"><span class="gris">&#11139;0</span></p>
         </div>
     </div>
     
