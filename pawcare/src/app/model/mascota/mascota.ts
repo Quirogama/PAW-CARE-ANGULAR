@@ -1,3 +1,4 @@
+import { List } from "echarts";
 import { cliente } from "../cliente/cliente";
 import { tratamiento } from "../tratamiento/tratamiento";
 
@@ -12,5 +13,6 @@ export interface mascota {
     imagen: string;
     cedulaCliente: number;
     tratamiento?: tratamiento;
+    historialMedico?: String[];
   }
   

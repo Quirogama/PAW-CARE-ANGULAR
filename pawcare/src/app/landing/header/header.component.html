@@ -11,7 +11,7 @@
           <a class="btnlogout" (click)="logout()">LOGOUT</a>
         </ng-container>
         <ng-container *ngSwitchCase="'veterinario'">
-          <a [routerLink]="['/veterinario/perfil', getUserId()]">PERFIL</a>
+          <a routerLink="/veterinario/home">PERFIL</a>
           <a class="btnlogout" (click)="logout()">LOGOUT</a>
         </ng-container>
         <ng-container *ngSwitchCase="'administrador'">

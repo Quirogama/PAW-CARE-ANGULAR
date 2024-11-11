@@ -1,19 +1,34 @@
-    <main class="content">
-        <ng-container *ngIf="mascota">
-            <section class="macotaCLASS">
-                <div class="mascota-info">
-                    <div>
-                        <h1>{{mascota.nombre}}</h1>
-                        <img src="{{mascota.imagen}}" class="imagenMascota">
-                        <p>Peso: {{mascota.peso}}kg</p>
-                        <p>Raza: {{mascota.raza}}</p>
-                        <p>Enfermedad: {{mascota.enfermedad}}</p>
-                        <p>Edad: {{mascota.edad}}</p>
-                        <p>Estado: {{mascota.estado}}</p>
-                        <p *ngIf="mascota.estado === 'En tratamiento'" >Droga suministrada: {{droga.nombre}}</p>
-                        <button routerLink="/mascota/historial/{{mascota.id}}" class="botonHistorial">Historial medico</button>
-                    </div>
-                </div>
-              </section>
-            </ng-container>
-      </main>
+<main class="content">
+  <ng-container *ngIf="mascota">
+    <section class="macotaCLASS">
+      <div class="mascota-info">
+        <div>
+          <h1>{{ mascota.nombre }}</h1>
+          <img src="{{ mascota.imagen }}" class="imagenMascota" />
+          <p>Peso: {{ mascota.peso }}kg</p>
+          <p>Raza: {{ mascota.raza }}</p>
+          <p>Enfermedad: {{ mascota.enfermedad }}</p>
+          <p>Edad: {{ mascota.edad }}</p>
+          <p>Estado: {{ mascota.estado }}</p>
+          <p *ngIf="mascota.estado === 'En tratamiento'">
+            Droga suministrada: {{ droga.nombre }}
+          </p>
+          <button (click)="verHistorial()" class="botonHistorial">
+            Historial médico
+          </button>
+        </div>
+        <div class="historialMedico" *ngIf="historialVisible">
+            <h2>Historial Medico de tratamientos:</h2>
+            <ul *ngIf="mascota.historialMedico && mascota.historialMedico.length > 0; else sinTratamientos">
+              <li *ngFor="let item of mascota.historialMedico">
+                {{ item }}
+              </li>
+            </ul>
+            <ng-template #sinTratamientos>
+              <p>No hay tratamientos registrados</p>
+            </ng-template>
+        </div>
+      </div>
+    </section>
+  </ng-container>
+</main>

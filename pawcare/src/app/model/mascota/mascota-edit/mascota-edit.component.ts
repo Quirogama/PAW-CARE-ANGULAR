@@ -61,10 +61,17 @@ export class MascotaEditComponent {
       return;
     }
 
-    this.mascotaService.updateMascota(this.mascota).subscribe(() => {
-      console.log("Cambios guardados");
-      this.router.navigate(['/mascotas']);
+    this.mascotaService.updateMascota(this.mascota).subscribe({
+      next: () => {
+        console.log("Cambios guardados");
+        this.router.navigate(['/mascotas']);
+      },
+      error: (error) => {
+        console.error('Error al guardar cambios:', error);
+        alert('Ocurrió un error al guardar los cambios.');
+      }
     });
+    
   }
 
   cancelar() {

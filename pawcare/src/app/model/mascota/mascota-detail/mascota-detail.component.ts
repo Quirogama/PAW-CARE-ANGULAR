@@ -16,6 +16,9 @@ export class MascotaDetailComponent {
   @Input()
   mascota!: mascota;
 
+  historialVisible: boolean = false;
+
+
   droga: droga = {
     id: 0,
     nombre: '',
@@ -53,4 +56,7 @@ export class MascotaDetailComponent {
     this.router.navigate(['/mascota/detail', this.mascota.id+1]);
   }
 
+  verHistorial() {
+    this.historialVisible = !this.historialVisible;  // Cambia el valor de historialVisible
+  }
 }
