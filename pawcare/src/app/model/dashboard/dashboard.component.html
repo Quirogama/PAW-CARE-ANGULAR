@@ -7,21 +7,21 @@
         
         <div class="kpi-card-blanca" id="kpi-card-1">
             <p>Ganancias</p>
-            <h2>{{ gananciasTotales | currency}}</h2>
+            <h2>{{ gananciasTotales | currency }}</h2>
             <p><span class="verde">COP</span></p>
         </div>
 
         <div class="kpi-card-blanca">
             <p>Tratamientos Activos</p>
-            <h2> {{tratamientos}} </h2>
+            <h2>{{ tratamientos }}</h2>
         </div>
 
         <div class="kpi-card-blanca">
             <p>Clientes Activos</p>
-            <h2 *ngIf="totalUsuarios != 0" >{{ totalUsuarios }}</h2>
-            <h2 *ngIf="totalUsuarios === 0" >...</h2>
-            <p *ngIf="aumentoCli > 0 && dismCli === 0"><span class="verde">&#9206;{{aumentoCli}}</span></p>
-            <p *ngIf="dismCli < 0"><span class="rojo">&#9207;{{aumentoCli}}</span></p>
+            <h2 *ngIf="totalUsuarios != 0">{{ totalUsuarios }}</h2>
+            <h2 *ngIf="totalUsuarios === 0">...</h2>
+            <p *ngIf="aumentoCli > 0 && dismCli === 0"><span class="verde">&#9206;{{ aumentoCli }}</span></p>
+            <p *ngIf="dismCli < 0"><span class="rojo">&#9207;{{ aumentoCli }}</span></p>
             <p *ngIf="aumentoCli === 0"><span class="gris">&#11139;0</span></p>
         </div>
 
@@ -29,13 +29,12 @@
             <p>Veterinarios Activos</p>
             <h2 *ngIf="totalVeterinariosActivos != 0">{{ totalVeterinariosActivos }}</h2>
             <h2 *ngIf="totalVeterinariosActivos === 0">...</h2> 
-            <p *ngIf="aumentoVet > 0 && dismVet === 0"><span class="verde">&#9206;{{aumentoVet}}</span></p>
-            <p *ngIf="dismVet < 0"><span class="rojo">&#9207;{{aumentoVet}}</span></p>
+            <p *ngIf="aumentoVet > 0 && dismVet === 0"><span class="verde">&#9206;{{ aumentoVet }}</span></p>
+            <p *ngIf="dismVet < 0"><span class="rojo">&#9207;{{ aumentoVet }}</span></p>
             <p *ngIf="aumentoVet === 0"><span class="gris">&#11139;0</span></p>
         </div>
     </div>
     
-
     <div class="pie-container">
         <div id="pieTopVeterinarios"></div>
         <div id="pieChart"></div>
@@ -47,81 +46,82 @@
     <!-- 1. Cantidad total de tratamiento administrados en el último mes -->
     <h2 style="text-align: center;">Cantidad total de tratamientos administrados en el último mes</h2>
     <div class="kpi-card centered">
-    <p>{{ totalTratamientosMes }}</p>
+        <p>{{ totalTratamientosMes }}</p>
     </div>
     <hr>
 
-    <!-- 2. Cantidad de tratamientos por tipo de medicamento administrado (tabla medicamento - cantidad) -->
+    <!-- 2. Cantidad de tratamientos por tipo de medicamento administrado (tabla medicamento - cantidad - tratamiento) -->
     <h2 style="text-align: center;">Cantidad de tratamientos por tipo de medicamento administrado en el último mes</h2>
     <div class="centered">
-    <table class="small-table">
-        <thead>
-        <tr>
-            <th>Medicamento</th>
-            <th>Cantidad Administrada</th>
-        </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let tratamiento of tratamientosPorMedicamento">
-            <td>{{ tratamiento.medicamento }}</td>
-            <td>{{ tratamiento.cantidad }}</td>
-        </tr>
-        </tbody>
-    </table>
+        <table class="small-table">
+            <thead>
+                <tr>
+                    <th>Medicamento</th>
+                    <th>Cantidad Administrada</th>
+                    <th>Tratamiento</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let tratamiento of tratamientosPorMedicamento">
+                    <td>{{ tratamiento.medicamento }}</td>
+                    <td>{{ tratamiento.cantidad }}</td>
+                    <td>{{ tratamiento.tratamiento }}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
     <hr>
 
     <!-- 3. Cantidad de veterinarios activos en la plataforma -->
     <h2 style="text-align: center;">Cantidad de veterinarios activos en la plataforma</h2>
     <div class="kpi-card centered">
-    <p>{{ totalVeterinariosActivos }}</p>
+        <p>{{ totalVeterinariosActivos }}</p>
     </div>
     <hr>
 
     <!-- 4. Cantidad de veterinarios inactivos en la plataforma -->
     <h2 style="text-align: center;">Cantidad de veterinarios inactivos en la plataforma</h2>
     <div class="kpi-card centered">
-    <p>{{ totalVeterinariosInactivos }}</p>
+        <p>{{ totalVeterinariosInactivos }}</p>
     </div>
     <hr>
 
     <!-- 5. Cantidad de mascotas totales en la veterinaria -->
     <h2 style="text-align: center;">Cantidad de mascotas totales en la veterinaria</h2>
     <div class="kpi-card centered">
-    <p>{{ totalMascotas }}</p>
+        <p>{{ totalMascotas }}</p>
     </div>
     <hr>
 
     <!-- 6. Cantidad de mascotas activas (en tratamiento) en la veterinaria -->
     <h2 style="text-align: center;">Cantidad de mascotas activas (en tratamiento) en la veterinaria</h2>
     <div class="kpi-card centered">
-    <p>{{ totalMascotasActivas }}</p>
+        <p>{{ totalMascotasActivas }}</p>
     </div>
     <hr>
 
     <!-- 7. Ventas totales de la veterinaria -->
     <h2 style="text-align: center;">Ventas totales</h2>
     <div class="kpi-card centered">
-    <p>{{ ventasTotales }}</p>
+        <p>{{ ventasTotales }}</p>
     </div>
     <hr>
 
     <!-- 8. Ganancias totales de la veterinaria -->
     <h2 style="text-align: center;">Ganancias totales de la veterinaria</h2>
     <div class="kpi-card centered">
-    <p>{{ gananciasTotales | currency}}</p>
+        <p>{{ gananciasTotales | currency }}</p>
     </div>
     <hr>
 
     <!-- 9. Top 3 tratamientos con más unidades vendidas -->
     <h2 style="text-align: center;">Top 3 tratamientos con más unidades vendidas</h2>
     <div class="centered">
-    <ol class ="centered-list">
-        <li *ngFor="let tratamiento of topTratamientos">
-        {{ tratamiento.nombre }} ({{ tratamiento.unidadesVendidas }} unidades)
-        </li>
-    </ol>
-    <hr>
+        <ol class="centered-list">
+            <li *ngFor="let tratamiento of topTratamientos">
+                {{ tratamiento.nombre }} ({{ tratamiento.unidadesVendidas }} unidades)
+            </li>
+        </ol>
+        <hr>
     </div>
-
 </main>

@@ -18,7 +18,7 @@ import { TratamientoService } from 'src/app/service/tratamiento.service';
 })
 export class DashboardComponent implements OnInit {
   // Propiedades para los KPIs
-  totalTratamientosMes!: number;
+  totalTratamientosMes: number = 9;
   totalVeterinariosActivos: number = 0;
   totalVeterinariosInactivos!: number;
   aumentoVet: number = 0;
@@ -43,16 +43,22 @@ export class DashboardComponent implements OnInit {
 
   // Datos para la tabla de tratamientos por medicamento
   tratamientosPorMedicamento = [
-    { medicamento: 'Antibiótico', cantidad: 35 },
-    { medicamento: 'Antiparasitario', cantidad: 50 },
-    { medicamento: 'Vacuna', cantidad: 60 }
+    { medicamento: 'ACOLAN', cantidad: 1, tratamiento: 'Displasia de cadera' },
+    { medicamento: 'ACTIONIS', cantidad: 1, tratamiento: 'Alergia alimentaria' },
+    { medicamento: 'ACUIMIX', cantidad: 1, tratamiento: 'Infección en las encías' },
+    { medicamento: 'ADVOCIN', cantidad: 1, tratamiento: 'Infección respiratoria' },
+    { medicamento: 'AEROFAR', cantidad: 1, tratamiento: 'Problemas oculares' },
+    { medicamento: 'AIVLOSIN', cantidad: 1, tratamiento: 'Problemas dentales' },
+    { medicamento: 'ALAMYCIN', cantidad: 1, tratamiento: 'Problemas de visión' },
+    { medicamento: 'ALTIDOX', cantidad: 2, tratamiento: 'Problemas dentales' },
+    { medicamento: 'ALSIR', cantidad: 1, tratamiento: 'Corte en la cola' }
   ];
 
   // Datos para el top 3 tratamientos más vendidos
   topTratamientos = [
-    { nombre: 'Tratamiento 1', unidadesVendidas: 100 },
-    { nombre: 'Tratamiento 2', unidadesVendidas: 80 },
-    { nombre: 'Tratamiento 3', unidadesVendidas: 60 }
+    { nombre: 'Problemas dentales', unidadesVendidas: 2 },
+    { nombre: 'Alergia alimentaria', unidadesVendidas: 1 },
+    { nombre: 'Corte en la cola', unidadesVendidas: 1 }
   ];
 
   // Inyectamos el servicio en el constructor
