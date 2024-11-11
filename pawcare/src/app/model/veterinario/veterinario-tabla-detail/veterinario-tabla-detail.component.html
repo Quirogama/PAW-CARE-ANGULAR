@@ -1,0 +1,43 @@
+<div class="contentUsuario">
+    <div class="info-usuario">
+        <ng-container *ngIf="veterinario">
+        <h1 class="username">{{veterinario.nombre}}</h1>
+        <img src="{{veterinario.imagen}}" class="imagenUsuario">
+        <div class="info-container">
+            <p><span>Cédula - </span>{{veterinario.cedula}}</p>
+            <p><span>Especialidad - </span>{{veterinario.especialidad}}</p>
+            <p><span>Atenciones - </span>{{veterinario.numAtenciones}}</p>
+        </div>
+        </ng-container>
+    </div>
+    <div class="tabla-container">
+        <h2>MASCOTAS EN TRATAMIENTO POR {{veterinario.nombre | uppercase}}</h2>
+        <table class="tabla">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Enfermedad</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody *ngIf="mascotasEnTratamiento && mascotasEnTratamiento.length > 0; else sinMascotas">
+              <tr *ngFor="let mascota of mascotasEnTratamiento">
+                <td>{{mascota.nombre}}</td>
+                <td>{{mascota.enfermedad}}</td>
+                <td>{{mascota.estado}}</td>
+                <td class="botones">
+                  <a routerLink="/mascota/detail/{{mascota.id}}"><button class="botonDetalles">Ver Detalles</button></a>
+                </td>
+              </tr>
+            </tbody>
+    
+            <ng-template #sinMascotas>
+              <tr>
+                <td colspan="4" class="text-center">No cuenta con mascotas en tratamiento</td>
+              </tr>
+            </ng-template>
+    
+        </table>
+    </div>
+</div>

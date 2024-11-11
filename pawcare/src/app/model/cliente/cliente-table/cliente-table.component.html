@@ -22,7 +22,7 @@
                 <td>{{cliente.cedula}}</td>
                 <td>{{cliente.celular}}</td>
                 <td class="botones">
-                    <a routerLink="/cliente/detail/{{cliente.id}}"><button class="botonDetalle">Ver Detalles</button></a>
+                    <a routerLink="/cliente/tabla/{{cliente.id}}"><button class="botonDetalle">Ver Detalles</button></a>
                     <a routerLink="/cliente/edit/{{cliente.id}}"><button class="botonEditar">Editar</button></a>
                     <button class="botonEliminar" (click)="eliminarCliente(cliente)">Eliminar</button>
                 </td>

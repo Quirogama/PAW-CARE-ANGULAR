@@ -57,7 +57,7 @@ export class ClienteDetailComponent {
       (mascotas) => {
         this.mascotas = mascotas;
         if (estadoSeleccionado === "Todos") {
-          this.todas(); // Método que carga todas las mascotas sin filtro
+          this.todas(); 
         } else if (estadoSeleccionado === "Recuperado") {
           this.filtrarMascotasREC();
         } else if (estadoSeleccionado === "En observación") {

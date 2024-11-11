@@ -22,7 +22,7 @@
                 <td>{{veterinario.especialidad}}</td>
                 <td>{{veterinario.numAtenciones}}</td>
                 <td class="botones">
-                    <a routerLink="/veterinario/detail/{{veterinario.id}}"><button class="botonDetalle">Ver Detalles</button></a>
+                    <a routerLink="/veterinario/tabla/{{veterinario.id}}"><button class="botonDetalle">Ver Detalles</button></a>
                     <a routerLink="/veterinario/edit/{{veterinario.id}}"><button class="botonEditar">Editar</button></a>
                     <button class="botonEliminar" (click)="eliminarVeterinario(veterinario)">Eliminar</button>
                 </td>

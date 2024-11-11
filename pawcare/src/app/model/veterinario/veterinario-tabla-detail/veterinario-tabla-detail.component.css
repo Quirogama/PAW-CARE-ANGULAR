@@ -1,0 +1,242 @@
+/* Estilos generales del contenido */
+.content {
+    min-height: 80vh;
+    margin-top: 90px; /* Igual a la altura del header */
+    margin-left: 0;
+    margin-right: 0;
+  }
+  
+  .contentUsuario {
+    min-height: 80vh;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 90px; /* Igual a la altura del header */
+    margin-left: 0;
+    margin-right: 0;
+  }
+  
+  .info h1 {
+    padding-top: 40px;
+  }
+  
+  .info p {
+    font-size: 18px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  .info h1,
+  .info h2 {
+    text-align: center;
+  }
+  
+  .tabla {
+    padding: 10px;
+    width:95%;
+    border-collapse: collapse;
+    margin: 20px;
+    font-size: 18px;
+    text-align: left;
+    border: 1px solid #ddd; 
+    border-radius: 20px;
+    margin: 0 auto; /* Centra la tabla */
+    margin-bottom: 2%;
+  }
+  
+  .tabla th,
+  .tabla td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .tabla th {
+    background-color: #006157; /* Color de fondo verde para encabezados */
+    color: white;
+  }
+  
+  .tabla tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .tabla tr:hover {
+    background-color: #ddd;
+  }
+  
+  h1,
+  h2 {
+    color: #006157;
+  }
+  
+  h1 span,
+  p span {
+    font-weight: bold;
+    color: #004d40;
+  }
+  
+  .btnCerrar {
+    background-color: #ffffff;
+    color: #004d40;
+    font-weight: bold;
+    border-radius: 20px;
+  }
+  
+  /* Estilos del dashboard */
+  .dashboard {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    flex: 1;
+    justify-content: center;
+    padding: 40px;
+  }
+  
+  .dashboard-container {
+    width: 300px;
+    height: 300px;
+    margin: 0 20px 0 20px;
+    background-color: white;
+    box-shadow: 0 4px 50px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    transition: transform 0.3s, box-shadow 0.3s; /* Transiciones suaves */
+    text-decoration: none;
+    align-content: center;
+    border-radius: 10px;
+  }
+  
+  .dashboard-container:hover {
+    transform: translateY(-5px); /* Elevar ligeramente al hacer hover */
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2); /* Sombra más grande al hacer hover */
+  }
+  
+  .dashboard-container a {
+    display: flex;
+    flex-direction: column;
+    color: #2a2a2a;
+    text-decoration: none;
+  }
+  
+  .dashboard-container a:hover {
+    color: #007f73;
+    text-decoration: none;
+  }
+  
+  .imagenDashboard {
+    width: 50%;
+    height: 50%;
+    border-radius: 10px;
+    align-self: center;
+  }
+  
+  /* Estilo dashboard de usuario */
+  
+  .info-usuario {
+    flex: 1;
+    max-width: 30%; /* Ocupa 1/3 de la página */
+    box-sizing: border-box; 
+    padding: 10px; 
+    background-color: white;
+    box-shadow: 0 4px 50px rgba(0, 0, 0, 0.1);
+    height: fit-content;
+    margin-left: 2%;
+    margin-top: 2%;
+    border-radius: 20px;
+  }
+  
+  .info-usuario img {
+    width: 40%;
+    height: 40%;
+    margin: 0 auto;
+    display: block; 
+    border-radius: 50%;
+    object-fit: cover; 
+    border: 2.5px solid lightgray; 
+  }
+  
+  .info-usuario h1 {
+    text-align: center;
+  }
+  
+  .info-container {
+    text-align: left;
+  }
+  
+  .info-container p {
+    background-color: white;
+    padding: 5px 10px 5px 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px 2px rgba(0, 0, 0, 0.05);
+    width: auto;
+  }
+  
+  .username {
+    margin: 0;
+    font-size: 40px;
+  }
+  
+  .tabla-container {
+    flex: 2;
+    max-width: 70%; /* Ocupa 2/3 de la página */
+    box-sizing: border-box; 
+    padding: 10px;
+    background-color: white;
+    box-shadow: 0 4px 50px rgba(0, 0, 0, 0.1);
+    height: fit-content;
+    margin-top: 2%;
+    margin-left: 2%;
+    margin-right: 2%;
+    border-radius: 20px;
+  }
+  
+  .tabla-container h2 {	
+    margin: 0;
+    margin-left: 2.5%;
+    font-weight: 500;
+  }
+
+  .botonDetalles{
+    padding: 5px;
+      font-size: 14px;
+      background-color: #00695e;
+      border: 0px solid #000;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer; 
+  }
+
+  .verde{
+    color:#006157;
+}
+
+.amarillo{
+    color:#c87800;
+}
+
+.rojo{
+    color: #860400;
+}
+
+.text-center {
+  text-align: center;
+  color: #666666;
+  font-size: 15px;
+}
+
+.selectEstado{
+  padding: 10px 20px;
+  padding-left: 0;
+    background-color: #006157;
+    border: 0px solid #000;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.selectEstado:hover{
+  cursor: pointer;
+  background-color: #00534b;
+}
+
+.selectEstado option{
+  cursor: pointer;
+}

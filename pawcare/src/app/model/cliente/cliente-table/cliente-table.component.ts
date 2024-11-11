@@ -39,4 +39,7 @@ export class ClienteTableComponent {
     this.clienteService.deleteCliente(cliente.id); 
   }
 
+  verDetalles(cliente: cliente) {
+    this.selectedCliente = cliente;
+  }
 }

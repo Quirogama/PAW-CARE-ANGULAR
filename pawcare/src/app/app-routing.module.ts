@@ -22,6 +22,8 @@ import { VeterinarioFormComponent } from './model/veterinario/veterinario-form/v
 import { TratamientoFormComponent } from './model/tratamiento/tratamiento-form/tratamiento-form.component';
 import { TratamientoDetailComponent } from './model/tratamiento/tratamiento-detail/tratamiento-detail.component';
 import { MascotaHistorialComponent } from './model/mascota/mascota-historial/mascota-historial.component';
+import { ClienteTablaDetailComponent } from './model/cliente/cliente-tabla-detail/cliente-tabla-detail.component';
+import { VeterinarioTablaDetailComponent } from './model/veterinario/veterinario-tabla-detail/veterinario-tabla-detail.component';
 
 
 const routes: Routes = [
@@ -41,6 +43,7 @@ const routes: Routes = [
   { path: 'cliente/registro', component: ClienteFormComponent},
   { path: 'cliente/crear-cuenta', component: ClienteRegistroComponent},
   { path: 'cliente/home', component: ClienteDetailComponent},
+  { path: 'cliente/tabla/:id', component: ClienteTablaDetailComponent},
   //veterinarios
   { path: 'veterinarios', component: VeterinarioTableComponent},
   { path: 'veterinario/edit/:id', component: VeterinarioEditComponent},
@@ -50,6 +53,7 @@ const routes: Routes = [
   { path: 'tratamiento/form/:id', component: TratamientoFormComponent},
   { path: 'tratamiento/detail/:id', component: TratamientoDetailComponent},
   { path: 'veterinario/home', component: VeterinarioPerfilComponent},
+  { path: 'veterinario/tabla/:id', component: VeterinarioTablaDetailComponent},
   //administrador
   { path: 'administrador/dashboard', component: AdministradorDashboardComponent},
   //dashboard

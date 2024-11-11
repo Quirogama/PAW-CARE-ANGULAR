@@ -36,6 +36,8 @@ import { AuthInterceptor } from './helpers/auth.interceptor';
 import { MascotaHistorialComponent } from './model/mascota/mascota-historial/mascota-historial.component';
 import { NgxEchartsModule } from 'ngx-echarts';
 import { CurrencyPipe } from '@angular/common';
+import { ClienteTablaDetailComponent } from './model/cliente/cliente-tabla-detail/cliente-tabla-detail.component';
+import { VeterinarioTablaDetailComponent } from './model/veterinario/veterinario-tabla-detail/veterinario-tabla-detail.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,7 +68,9 @@ import { CurrencyPipe } from '@angular/common';
     TratamientoFormComponent,
     ClienteRegistroComponent,
     TratamientoDetailComponent,
-    MascotaHistorialComponent
+    MascotaHistorialComponent,
+    ClienteTablaDetailComponent,
+    VeterinarioTablaDetailComponent
   ],
   imports: [
     BrowserModule,

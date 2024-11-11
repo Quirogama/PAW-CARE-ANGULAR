@@ -1,0 +1,64 @@
+<div class="contentUsuario">
+    <div class="info-usuario">
+      <ng-container *ngIf="cliente">
+        <h1 class="username">{{cliente.nombre}}</h1>
+        <img src="assets/img/iconoCliente.png" class="imagenUsuario">
+        <div class="info-container">
+          <p><span>Correo - </span>{{cliente.correo}}</p>
+          <p><span>Cédula - </span>{{cliente.cedula}}</p>
+          <p><span>Celular - </span>{{cliente.celular}}</p>
+        </div>
+      </ng-container>
+    </div>
+  
+    <div class="tabla-container">
+      <h2>MASCOTAS ASOCIADAS AL CLIENTE</h2>
+      <table class="tabla">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Peso</th>
+            <th>Raza</th>
+            <th>Enfermedad</th>
+            <th><select name="estado" class="selectEstado" (change)="onEstadoChange($event)">
+              <option value="" selected hidden>Estado</option>
+              <option value="Todos">Todas</option>
+              <option value="Recuperado">Recuperado</option>
+              <option value="En observación">En observación</option>
+              <option value="En tratamiento">En tratamiento</option>
+              </select>
+            </th>
+            <th>Edad</th>
+            <th>Acciones</th> 
+          </tr>
+        </thead>
+        <tbody *ngIf="mascotas && mascotas.length > 0; else sinMascotas">
+          <tr *ngFor="let mascota of mascotas">
+            <td>{{mascota.nombre}}</td>
+            <td>{{mascota.peso}}kg</td>
+            <td>{{mascota.raza}}</td>
+            <td>{{mascota.enfermedad}}</td>
+            <td [ngClass]="{
+                'verde': mascota.estado === 'Recuperado',
+                'amarillo': mascota.estado === 'En observación',
+                'rojo': mascota.estado === 'En tratamiento'
+              }">
+              {{mascota.estado}}
+            </td>
+            <td>{{mascota.edad}}</td>
+            <td class="botones">
+              <a routerLink="/mascota/detail/{{mascota.id}}"><button class="botonDetalles">Ver Detalles</button></a>
+            </td>
+          </tr>
+        </tbody>
+
+        <ng-template #sinMascotas>
+          <tr>
+            <td colspan="7" class="text-center">No hay mascotas asociadas</td>
+          </tr>
+        </ng-template>
+        
+      </table>
+    </div>
+  </div>
+  
